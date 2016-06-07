@@ -6,7 +6,6 @@ The official un-official container camp by Microsoft. This is used to build out 
 
 1. Installing the CLI
 
-
-    that's all folks
+    awe
 
 ## Windows (TOC)
