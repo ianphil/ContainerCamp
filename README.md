@@ -1,11 +1,13 @@
-# ContainerCamp
+Docker Installation
+-------------------
 
-The official un-official container camp by Microsoft. This is used to build out containerized applications on Azure and Windows.
+### ON UBUNTU 14-10
 
-## Azure (TOC)
+**Repo install usually back leveled** 
 
-1. Installing the CLI
-
-    awe
-
-## Windows (TOC)
+    sudo apt-get install -y docker.io  #
+    sudo usermod -aG docker vagrant
+    docker info
+    docker -v 
+    docker version
+    sudo service docker restart
