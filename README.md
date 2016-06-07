@@ -6,6 +6,7 @@ The official un-official container camp by Microsoft. This is used to build out 
 
 1. Installing the CLI
 
-    sudo apt-get install -y docker.io
+
+    that's all folks
 
 ## Windows (TOC)
