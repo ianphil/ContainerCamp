@@ -21,7 +21,14 @@ In this lab you will setup a VM like in labone, but it will have docker... We'll
 
 * [Deploy a Docker VM using the Quick Start Template](labtwo/deploy-docker-vm.md)
 
-## Lab Three: Configure Azure Driver for Docker Machine ##
+## Lab Three: Configure Azure Provider for Docker Machine ##
 In this lab you will configure your local Docker-Machine tooling to create VMs on Azure instead of using your local hypervisor.
 
 * [Configure Docker Machine to use Azure](labthree/docker-machine-azure.md)
+
+## Lab Four: Setup Docker Swarm and Deploy Some Containers ##
+In this lab you will deploy Docker Swarm. Once you have a swarm you will deploy some things to it...
+
+> **NOTE** -- In this lab we need to switch azure-cli mode from ARM to ASM. We'll also be using a secure docker endopoint see [Protect the Docker daemon socket](https://docs.docker.com/engine/security/https/) for more information.
+
+* [Deploy Docker Swarm](labfour/deploy-docker-swarm.md)
