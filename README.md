@@ -1,4 +1,4 @@
-# ContainerCamp #
+# Container Camp #
 
 The official un-official Container Camp by Microsoft. This is used to build out containerized applications on Azure and Windows.
 
@@ -20,3 +20,8 @@ This lab will get you familiar with using the Azure CLI for deploying resources 
 In this lab you will setup a VM like in labone, but it will have docker... We'll deploy nginx and hit the default website from a browser.
 
 * [Deploy a Docker VM using the Quick Start Template](labtwo/deploy-docker-vm.md)
+
+## Lab Three: Configure Azure Driver for Docker Machine ##
+In this lab you will configure your local Docker-Machine tooling to create VMs on Azure instead of using your local hypervisor.
+
+* [Configure Docker Machine to use Azure](labthree/docker-machine-azure.md)
