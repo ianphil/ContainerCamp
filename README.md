@@ -29,6 +29,6 @@ In this lab you will configure your local Docker-Machine tooling to create VMs o
 ## Lab Four: Setup Docker Swarm and Deploy Some Containers ##
 In this lab you will deploy Docker Swarm. Once you have a swarm you will deploy some things to it...
 
-> **NOTE** -- In this lab we need to switch azure-cli mode from ARM to ASM. We'll also be using a secure docker endopoint see [Protect the Docker daemon socket](https://docs.docker.com/engine/security/https/) for more information.
-
 * [Deploy Docker Swarm](labfour/deploy-docker-swarm.md)
+
+> **NOTE** -- In this lab we need to switch azure-cli mode from ARM to ASM. We'll also be using a secure docker endopoint see [Protect the Docker daemon socket](https://docs.docker.com/engine/security/https/) for more information.
