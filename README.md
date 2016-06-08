@@ -1,6 +1,5 @@
 # Container Camp #
-
-The official un-official Container Camp by Microsoft. This is used to build out containerized applications on Azure and Windows.
+The official un-official container camp used to build out containerized applications on Azure.
 
 > We assume you have an Azure Subscription...
 
