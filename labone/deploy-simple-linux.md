@@ -22,13 +22,13 @@ Now it's time to create a VM...
 
 **Deploy an ARM Template using the Azure-CLI:**
 
-    azure group deployment create <my-resource-group> <my-deployment-name> --template-uri https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json
+    azure group deployment create {RESOURCE GROUP NAME} {DEPLOYMENT NAME} --template-uri https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json
 
-> Replace <my-resource-group> with the resource group name you just created.
+> Replace {RESOURCE GROUP NAME} with the resource group name you just created.
 
-> Replace <my-deployment-name> with whatever you like.
+> Replace {DEPLOYMENT NAME} with whatever you like.
 
-This command creates a deployment with the resouce manager and passes the URI of the linux template we just reviewed. It will also prompt you for the following parameters:
+This command creates a deployment with the resource manager and passes the URI of the Linux template we just reviewed. It will also prompt you for the following parameters:
 
 1. Username (don't use "admin")
 2. Password (needs to be more than 8 chars and be complex)
@@ -39,7 +39,9 @@ From the command line we'll ssh to the server, feel free to poke around once con
 
     ssh username@DNS-LABLE-YOU-CREATED.eastus.cloudapp.azure.com
 
-## Delete the Resouce Group ##
+> On Windows and need SSH? [Download Putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).
+
+## Delete the Resource Group ##
 This command will remove everything you just created!
 
-    azure group delete <my-resource-group> -q
+    azure group delete {RESOURCE GROUP NAME} -q
