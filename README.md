@@ -9,6 +9,7 @@ This will setup cmd line access to Azure and works on OSX, Linux, even Windows..
 * Setup Step One 	- [Install Azure CLI](setup/xplat-cli-install.md)
 * Setup Step Two 	- [Login to Azure CLI](setup/xplat-cli-login.md)
 * Setup Step Three 	- [Switch Azure CLI to ARM Mode](setup/xplat-cli-arm.md)
+* Setup Step Four	- [Install Docker Toolbox](https://www.docker.com/products/docker-toolbox)
 
 ## Lab One: Getting Familiar with Azure Resource Manager ##
 This lab will get you familiar with using the Azure CLI for deploying resources to Azure. We'll use Azure Resource Manager (ARM) Templates to describe what we want created in Azure. For More information about ARM and ARM Templates see: [Azure Resource Manager Overview](labone/arm-overview.md).

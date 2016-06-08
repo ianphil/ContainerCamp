@@ -40,6 +40,7 @@ This command creates a deployment with the resource manager and passes the URI o
 1. Username (don't use "admin")
 2. Password (needs to be more than 8 chars and be complex)
 3. DNS Label (this will be the dns prefix used to connect to the box)
+4. Storage Account Name (blob storage for VM Disks)
 
 ## SSH to your new Linux Box ##
 From the command line we'll ssh to the server, feel free to poke around once connected.
