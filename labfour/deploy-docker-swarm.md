@@ -13,10 +13,10 @@ This topic creates four VMs, but you can use any number you want. Call the follo
 
 **Build Swarm VMs**
 
-    azure vm docker create swarm-master -l "East US" -e 22 $imagename ops <password>
-    azure vm docker create swarm-node-1 -l "East US" -e 22 $imagename ops <password>
-    azure vm docker create swarm-node-2 -l "East US" -e 22 $imagename ops <password>
-    azure vm docker create swarm-node-3 -l "East US" -e 22 $imagename ops <password>
+    azure vm docker create swarm-master -l "East US" -e 22 "b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04-LTS-amd64-server-20140724-en-us-30GB" ops <password>
+    azure vm docker create swarm-node-1 -l "East US" -e 22 "b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04-LTS-amd64-server-20140724-en-us-30GB" ops <password>
+    azure vm docker create swarm-node-2 -l "East US" -e 22 "b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04-LTS-amd64-server-20140724-en-us-30GB" ops <password>
+    azure vm docker create swarm-node-3 -l "East US" -e 22 "b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04-LTS-amd64-server-20140724-en-us-30GB" ops <password>
 
 When you're done you should be able to use **azure vm list** to see your Azure VMs:
 
