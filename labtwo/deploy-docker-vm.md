@@ -87,6 +87,11 @@ This should download the image and start the container and setting up the port f
 
 You should see the "Welcome to NGINX" default page. Well that's it for this lab... Time to clean up.
 
+## Create your own Docker Image ##
+Use the Docker Docs and create your own image... A good place to start is:
+
+* [Build your own images](https://docs.docker.com/engine/userguide/containers/dockerimages/)
+
 ## Delete the Resource Group ##
 This command will remove everything you just created!
 
