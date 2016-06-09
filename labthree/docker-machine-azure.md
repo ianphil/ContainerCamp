@@ -31,7 +31,7 @@ If you have experience with Linux distributions, you may already have these file
 
 4. Create a docker host VM on Azure using the **docker-machine create** command. The command requires the subscription ID you just captured in the previous step and the path to the **.pem** file you created in step 1. This topic uses "machine-name" as the Azure Cloud Service (and your VM) name, but you should replace that with your own choice and remember to use your cloud service name in any other step that requires the vm name. (Remember that in this example, we are using the full binary name and not a **docker-machine** symlink.)
 
-		docker-machine_linux-amd64 create \
+		docker-machine create \
 	    -d azure \
 	    --azure-subscription-id="<subscription ID acquired above>" \
 	    --azure-subscription-cert="mycert.pem" \
