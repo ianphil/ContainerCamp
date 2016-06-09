@@ -32,3 +32,9 @@ In this lab you will deploy Docker Swarm. Once you have a swarm you will deploy 
 * [Deploy Docker Swarm](labfour/deploy-docker-swarm.md)
 
 > **NOTE** -- In this lab we need to switch azure-cli mode from ARM to ASM. We'll also be using a secure docker endopoint see [Protect the Docker daemon socket](https://docs.docker.com/engine/security/https/) for more information.
+
+## Lab Five: Setup Azure Container Service ##
+In this lab we'll look at Microsoft Azure's Container as a Service solution called: Azure Container Service (ACS).
+
+* [Deploy Azure Container Service](labfive/deploy-acs.md)
+* [Connect and Use ACS](labfive/connect-acs.md)
