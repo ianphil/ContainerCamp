@@ -9,7 +9,7 @@ This will setup cmd line access to Azure and works on OSX, Linux, even Windows..
 * Setup Step One 	- [Install Azure CLI](setup/xplat-cli-install.md)
 * Setup Step Two 	- [Login to Azure CLI](setup/xplat-cli-login.md)
 * Setup Step Three 	- [Switch Azure CLI to ARM Mode](setup/xplat-cli-arm.md)
-* Setup Step Four	- [Install Docker Toolbox](https://www.docker.com/products/docker-toolbox)
+* Setup Step Four	- [Install Docker for Windows](https://www.docker.com/)
 
 ## Lab One: Getting Familiar with Azure Resource Manager ##
 This lab will get you familiar with using the Azure CLI for deploying resources to Azure. We'll use Azure Resource Manager (ARM) Templates to describe what we want created in Azure. For More information about ARM and ARM Templates see: [Azure Resource Manager Overview](labone/arm-overview.md).
@@ -21,10 +21,10 @@ In this lab you will setup a VM like in labone, but it will have docker... We'll
 
 * [Deploy a Docker VM using the Quick Start Template](labtwo/deploy-docker-vm.md)
 
-## Lab Three: Configure Azure Provider for Docker Machine ##
-In this lab you will configure your local Docker-Machine tooling to create VMs on Azure instead of using your local hypervisor.
+## Lab Three: Configure a Windows Container Host ##
+In this lab you will build a Windows 2016 Server TP5 Container Host and deploy Windows containers.
 
-* [Configure Docker Machine to use Azure](labthree/docker-machine-azure.md)
+* [Windows Containers on Windows Server](labthree/windows-containers.md)
 
 ## Lab Four: Setup Docker Swarm and Deploy Some Containers ##
 In this lab you will deploy Docker Swarm. Once you have a swarm you will deploy some things to it...

@@ -37,11 +37,9 @@ From the start menu open Microsoft Remote Desktop
     DNS-LABLE-YOU-CREATED.eastus.cloudapp.azure.com
 
 
-**This is preliminary content and subject to change.**
+**The below content is preliminary content and subject to change.**
 
 This exercise will walk through basic deployment and use of the Windows container feature on Windows Server. After completion, you will have installed the container role and have deployed a simple Windows Server container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. 
-
-**Prerequisites:**
 
 From the VM we've just created in Azure:
 
