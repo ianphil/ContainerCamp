@@ -4,9 +4,6 @@
 Let's set the stage, we want to deploy a VM into Azure. This VM will be a Windows 2016 Server TP5 without docker. After this is deployed we will follow the manual steps to setup Windows Containers and Docker. 
 
 1. Have a look at the [WindowsVirtualMachine.json](WindowsVirtualMachine.json) file that we will be deploying.
-	1. There is a azuredeploy.json file. It descibes the resources we want to create. It also has parameters for things like username and password.
-	2. There is a azuredeploy.parameters.json file that contains the parameters to pass to the template. Customers use multiple param files to create different environments like dev, test, prod. **We will not use this for the lab.**
-
 
 ## Create Resource Group ##
 A resource group is a grouping of Azure resouces that can be managed and secured as a single unit. Read "I can delete every resource in a resource group by deleting the resource group"... kind of scary.
@@ -22,42 +19,31 @@ Now it's time to create a VM...
 
 **Deploy an ARM Template using the Azure-CLI:**
 
-    azure group deployment create {RESOURCE GROUP NAME} {DEPLOYMENT NAME} --template-uri https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json
+    azure group deployment create {RESOURCE GROUP NAME} {DEPLOYMENT NAME} --template-uri https://raw.githubusercontent.com/tripdubroot/ContainerCamp/master/labthree/WindowsVirtualMachine.json
 
 > Replace {RESOURCE GROUP NAME} with the resource group name you just created.
 
 > Replace {DEPLOYMENT NAME} with whatever you like.
 
-This command creates a deployment with the resource manager and passes the URI of the Linux template we just reviewed. It will also prompt you for the following parameters:
+This command creates a deployment with the resource manager and passes the URI of the Windows template we just reviewed. It will also prompt you for the following parameters:
 
 1. Username (don't use "admin")
 2. Password (needs to be more than 8 chars and be complex)
 3. DNS Label (this will be the dns prefix used to connect to the box)
-4. Storage Account Name (blob storage for VM Disks)
 
-## SSH to your new Linux Box ##
-From the command line we'll ssh to the server, feel free to poke around once connected.
+## Remote Desktop to your new Windows Box ##
+From the start menu open Microsoft Remote Desktop
 
-    ssh username@DNS-LABLE-YOU-CREATED.eastus.cloudapp.azure.com
-
-> On Windows and need SSH? [Download Putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).
+    DNS-LABLE-YOU-CREATED.eastus.cloudapp.azure.com
 
 
 **This is preliminary content and subject to change.**
 
-This exercise will walk through basic deployment and use of the Windows container feature on Windows Server. After completion, you will have installed the container role and have deployed a simple Windows Server container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found in the [Quick Start Introduction](./quick_start.md).
-
-This quick start is specific to Windows Server containers on Windows Server 2016. Additional quick start documentation can be found in the table of contents on the left hand side of this page.
+This exercise will walk through basic deployment and use of the Windows container feature on Windows Server. After completion, you will have installed the container role and have deployed a simple Windows Server container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. 
 
 **Prerequisites:**
 
-One computer system (physical or virtual) running [Windows Server 2016 Technical Preview 5](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-technical-preview).
-
-A fully configured Windows Server image is available in Azure. To use this image, deploy a virtual machine by clicking on the button below. The deployment will take about 10 minutes. Once it is complete, log into the Azure virtual machine and skip to step four of this tutorial. 
-
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVirtualization-Documentation%2Fmaster%2Fwindows-server-container-tools%2Fcontainers-azure-template%2Fazuredeploy.json" target="_blank">
-    <img src="http://azuredeploy.net/deploybutton.png"/>
-</a>
+From the VM we've just created in Azure:
 
 ## 1. Install Container Feature
 
@@ -125,8 +111,6 @@ docker images
 REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
 microsoft/windowsservercore   latest              02cb7f65d61b        8 weeks ago         7.764 GB
 ```
-
-For in depth information on Windows container images see, [Managing Container Images](../management/manage_images.md).
 
 ## 4. Deploy Your First Container
 
@@ -211,6 +195,6 @@ This command will remove everything you just created!
 
 ## Next Steps
 
-[Container Images on Windows Server](./quick_start_images.md)
+[Container Images on Windows Server](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/quick_start/quick_start_images)
 
-[Windows Containers on Windows 10](./quick_start_windows_10.md)
+[Windows Containers on Windows 10](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/quick_start/quick_start_windows_10)
