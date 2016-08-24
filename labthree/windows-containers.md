@@ -1,11 +1,9 @@
 
 
 # Windows Containers on Windows Server
-Let's set the stage, we want to deploy a VM into Azure. This VM will be a basic install of Ubuntu 14.04 without docker. 
+Let's set the stage, we want to deploy a VM into Azure. This VM will be a Windows 2016 Server TP5 without docker. After this is deployed we will follow the manual steps to setup Windows Containers and Docker. 
 
-1. Browse the [Azure Quick Start Template Repo](https://github.com/Azure/azure-quickstart-templates)
-	1. Yea there is a lot there...
-2. Have a look at the [101-vm-simple-linux](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-simple-linux) folder.
+1. Have a look at the [WindowsVirtualMachine.json](WindowsVirtualMachine.json) file that we will be deploying.
 	1. There is a azuredeploy.json file. It descibes the resources we want to create. It also has parameters for things like username and password.
 	2. There is a azuredeploy.parameters.json file that contains the parameters to pass to the template. Customers use multiple param files to create different environments like dev, test, prod. **We will not use this for the lab.**
 
