@@ -61,60 +61,24 @@ Restart-Computer -Force
 
 Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. For this exercise, both will be installed.
 
-Download the Docker engine and client as a zip archive.
+Download and install the Windows-native Docker Engine
 
 ```none
-Invoke-WebRequest "https://get.docker.com/builds/Windows/x86_64/docker-1.12.0.zip" -OutFile "$env:TEMP\docker-1.12.0.zip" -UseBasicParsing
+Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+Install-Module -Name DockerMsftProvider -Force
+Install-Package -Name docker -ProviderName DockerMsftProvider -Force
+Restart-Computer -Force
 ```
 
-Expand the zip archive into Program Files, the archive contents is already in docker directory.
-
+Docker Engine is now installed and running as service. To verify Docker is running, type:
 ```none
-Expand-Archive -Path "$env:TEMP\docker-1.12.0.zip" -DestinationPath $env:ProgramFiles
+docker version
 ```
 
-Add the Docker directory to the system path. When complete, restart the PowerShell session so that the modified path is recognized.
-
-```none
-[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
-```
-
-To install Docker as a Windows service, run the following.
-
-```none
-& $env:ProgramFiles\docker\dockerd.exe --register-service
-```
-
-Once installed, the service can be started.
-
-```none
-Start-Service docker
-```
 
 ## 3. Install Base Container Images
 
-Windows containers are deployed from templates or images. Before a container can be deployed, a base OS image needs to be downloaded. The following command will download the Windows Server Core base image.
-
-```none
-docker pull microsoft/windowsservercore
-```
-
-This process can take some time, so take a break and pick back up once the pull has completed.
-
-Once the image is pulled, running `docker images` will return a list of installed images, in this case the Windows Server Core image.
-
-```none
-docker images
-
-REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
-microsoft/windowsservercore   latest              02cb7f65d61b        8 weeks ago         7.764 GB
-```
-
-## 4. Deploy Your First Container
-
-For this exercise, you will download a pre-created IIS image from the Docker Hub registry and deploy a simple container running IIS.  
-
-To search Docker Hub for Windows container images, run `docker search Microsoft`.  
+Windows containers are deployed from templates or images. Before a container can be deployed, a base OS image needs to be downloaded. To search Docker Hub for Windows container images, run `docker search Microsoft`.  
 
 ```none
 docker search microsoft
@@ -141,6 +105,26 @@ microsoft/sqlite                             SQLite installed in a Windows Serve
 ...
 ```
 
+The following command will download the Windows Server Core base image.
+
+```none
+docker pull microsoft/windowsservercore
+```
+
+This process can take some time, so take a break and pick back up once the pull has completed.
+
+Once the image is pulled, running `docker images` will return a list of installed images, in this case the Windows Server Core image.
+
+```none
+docker images
+
+REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
+microsoft/windowsservercore   latest              02cb7f65d61b        8 weeks ago         7.764 GB
+```
+
+## 4. Deploy Your First Container
+
+For this exercise, you will download a pre-created IIS image from the Docker Hub registry and deploy a simple container running IIS.  
 Download the IIS image using `docker pull`.  
 
 ```none
@@ -178,7 +162,7 @@ CONTAINER ID  IMAGE          COMMAND              CREATED             STATUS    
 
 From a different computer, open up a web browser and enter the IP address of the container host. If everything has been configured correctly, you should see the IIS splash screen. This is being served from the IIS instance hosted in the Windows container.
 
-**Note:** if you are working in Azure, the external IP Address of the virtual machine and a configured network security will be needed. For more information see, [Create Rule in a Network Security Group]( https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-create-nsg-arm-pportal/#create-rules-in-an-existing-nsg).
+**Note:** if you are working in Azure, the external IP Address of the virtual machine will be needed to access the IIS website.
 
 Back on the container host, use the `docker rm` command to remove the container. Note – replace the name of the container in this example with the actual container name.
 
