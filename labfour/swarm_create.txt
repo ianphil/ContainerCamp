@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 docker-machine create --driver azure --azure-subscription-id 8bae2860-70c1-4614-b55a-60e97f4248dc --azure-location westus --azure-size Standard_A1 --azure-resource-group ContainersLabSwarm2 --azure-ssh-user sysadmin swarm-leader
 
 docker-machine create --driver azure --azure-subscription-id 8bae2860-70c1-4614-b55a-60e97f4248dc --azure-location westus --azure-size Standard_A1 --azure-resource-group ContainersLabSwarm2 --azure-ssh-user sysadmin swarm-node-1
@@ -47,6 +48,8 @@ docker swarm init --advertise-addr 104.42.190.143
 
 ===========================================================
 
+=======
+>>>>>>> refs/remotes/tripdubroot/master
 docker-machine
 docker-machine create --driver azure --azure-subscription-id 2295f62b-34e7-40a1-9e9f-6def6b9f20b7 --azure-resource-group swarm swarm_leader
 docker-machine create --driver azure --azure-subscription-id 2295f62b-34e7-40a1-9e9f-6def6b9f20b7 --azure-resource-group swarm leader
