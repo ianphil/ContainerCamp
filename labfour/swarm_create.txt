@@ -1,35 +1,61 @@
-docker-machine create --driver azure --azure-subscription-id 8bae2860-70c1-4614-b55a-60e97f4248dc --azure-location westus --azure-size Standard_A1 --azure-resource-group ContainersLabSwarm --azure-ssh-user sysadmin swarm-leader
+docker-machine create --driver azure --azure-subscription-id 8bae2860-70c1-4614-b55a-60e97f4248dc --azure-location westus --azure-size Standard_A1 --azure-resource-group ContainersLabSwarm2 --azure-ssh-user sysadmin swarm-leader
 
-docker-machine create --driver azure --azure-subscription-id 8bae2860-70c1-4614-b55a-60e97f4248dc --azure-location westus --azure-size Standard_A1 --azure-resource-group ContainersLabSwarm --azure-ssh-user sysadmin swarm-node-1
+docker-machine create --driver azure --azure-subscription-id 8bae2860-70c1-4614-b55a-60e97f4248dc --azure-location westus --azure-size Standard_A1 --azure-resource-group ContainersLabSwarm2 --azure-ssh-user sysadmin swarm-node-1
 
-docker-machine create --driver azure --azure-subscription-id 8bae2860-70c1-4614-b55a-60e97f4248dc --azure-location westus --azure-size Standard_A1 --azure-resource-group ContainersLabSwarm --azure-ssh-user sysadmin swarm-node-2
+docker-machine create --driver azure --azure-subscription-id 8bae2860-70c1-4614-b55a-60e97f4248dc --azure-location westus --azure-size Standard_A1 --azure-resource-group ContainersLabSwarm2 --azure-ssh-user sysadmin swarm-node-2
 
-azure vm list ContainersLabSwarm
-azure vm list-ip-address ContainersLabSwarm
+azure vm list ContainersLabSwarm2
+azure vm list-ip-address ContainersLabSwarm2
+
+================================================
+docker run swarm create  ## creates token in docker hub hosted discovery service ##
+
+docker-machine create --driver azure --azure-subscription-id 8bae2860-70c1-4614-b55a-60e97f4248dc --azure-location westus --azure-size Standard_A1 --azure-resource-group ContainersLabSwarm2 --azure-ssh-user sysadmin --swarm --swarm-master --swarm-discovery token://2d670a32fdaf6073f77b643cb5b5d04c swarm-master2
+
+docker-machine create --driver azure --azure-subscription-id 8bae2860-70c1-4614-b55a-60e97f4248dc --azure-location westus --azure-size Standard_A1 --azure-resource-group ContainersLabSwarm2 --azure-ssh-user sysadmin --swarm --swarm-discovery token://2d670a32fdaf6073f77b643cb5b5d04c swarm-node-1
+
+docker-machine create --driver azure --azure-subscription-id 8bae2860-70c1-4614-b55a-60e97f4248dc --azure-location westus --azure-size Standard_A1 --azure-resource-group ContainersLabSwarm2 --azure-ssh-user sysadmin --swarm --swarm-discovery token://2d670a32fdaf6073f77b643cb5b5d04c swarm-node-2
+
 docker-machine ls
 
-docker-machine env swarm-leader
-docker-machine ssh tcp://128.91.137.111:2376
+docker-machine env --swarm swarm-master2
 
-sudo docker run --rm swarm create 
+##run set commands to configure docker client#
+## swarm is already created ##
+
+How to join existing host????
+
+docker-machine ssh swarm-node-1 sudo docker swarm join token://2d670a32fdaf6073f77b643cb5b5d04c
+
 
 
 ========================================================
 ssh sysadmin@138.91.137.111   #or use putty from windows
 
-#cluster Id - f31ca32012267a573244726d0514c4dc
+#cluster Id - e95f9b72df33fb9ab07fb9e3541ef7e8
+
+docker-machine env swarm-leader
 
 docker-machine env swarm-node-1
 docker-machine env swarm-node-2
 
+
 sudo docker run -d swarm join --addr=13.93.211.53:2376 token://f31ca32012267a573244726d0514c4dc
 
+docker swarm init --advertise-addr 104.42.190.143
 
 
 ===========================================================
 
+docker-machine
+docker-machine create --driver azure --azure-subscription-id 2295f62b-34e7-40a1-9e9f-6def6b9f20b7 --azure-resource-group swarm swarm_leader
+docker-machine create --driver azure --azure-subscription-id 2295f62b-34e7-40a1-9e9f-6def6b9f20b7 --azure-resource-group swarm leader
+docker-machine env leader
+docker-machine create --driver azure --azure-subscription-id 2295f62b-34e7-40a1-9e9f-6def6b9f20b7 --azure-resource-group swarm node01
+docker env node01
+docker-machine env node01
 ssh docker-user@13.93.161.206
-
+docker-machine create --driver azure --azure-subscription-id 2295f62b-34e7-40a1-9e9f-6def6b9f20b7 --azure-resource-group swarm node02
 docker-machine ls
 docker-machine env default
 eval "$(docker-machine env leader)"
