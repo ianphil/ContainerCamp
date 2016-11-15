@@ -36,10 +36,10 @@ Docker-Machine can also return a list of your deployed machines. Take note that 
 
     $ docker-machine ls 
 
-NAME                ACTIVE   DRIVER   STATE     URL                          SWARM   DOCKER    ERRORS
-swarm-master-east   -        azure    Running   tcp://137.135.113.221:2376           v1.12.3
-swarm-node1-east    -        azure    Running   tcp://137.135.119.172:2376           v1.12.3
-swarm-node2-east    -        azure    Running   tcp://137.135.116.111:2376           v1.12.3
+    NAME                ACTIVE   DRIVER   STATE     URL                          SWARM   DOCKER    ERRORS
+    swarm-master-east   -        azure    Running   tcp://137.135.113.221:2376           v1.12.3
+    swarm-node1-east    -        azure    Running   tcp://137.135.119.172:2376           v1.12.3
+    swarm-node2-east    -        azure    Running   tcp://137.135.116.111:2376           v1.12.3
 
 ## Installing swarm on the swarm master VM
 
@@ -57,7 +57,7 @@ To add a worker to this swarm, run the following command:
 
 Copy this command for use in the next step.
 
-## Join the node VMs to our docker cluster
+## Join the node VMs to your docker cluster
 
 For each node you need to add to the swarm, run the command provided from the manager. 
 
@@ -69,12 +69,12 @@ To check your work, run:
 
 Look for the following information within the resulting output:
 
-Swarm: active
- NodeID: 1i8hnn4v7msygj2z7nrk2p7zu
- Is Manager: true
- ClusterID: 78f3x9oea40piz6rai37srgdv
- Managers: 1
- Nodes: 3
+    Swarm: active
+     NodeID: 1i8hnn4v7msygj2z7nrk2p7zu
+     Is Manager: true
+     ClusterID: 78f3x9oea40piz6rai37srgdv
+     Managers: 1
+     Nodes: 3
 
 Repeat for all the other nodes in the cluster. In our case, we do that for **swarm-node-2** and **swarm-node-3**.
 

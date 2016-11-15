@@ -31,7 +31,7 @@ In this lab you will deploy Docker with swarm mode, using docker-machine to depl
 
 * [Deploy Docker Swarm](labfour/deploy-docker-swarm.md)
 
-## Lab Five: Setup Azure Container Service ##
+## OPTIONAL - Lab Five: Setup Azure Container Service ##
 In this lab we'll look at Microsoft Azure's Container as a Service solution called: Azure Container Service (ACS).
 
 * [Deploy Azure Container Service](labfive/deploy-acs.md)
