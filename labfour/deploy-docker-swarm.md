@@ -47,7 +47,7 @@ For this step, you will be using **docker-machine** to use SSH to send commands 
 
     $ docker-machine ssh <MASTER VM NAME> sudo docker swarm init --advertise-addr <PRIVATE IP>
 
-Swarm initialized: current node (1i8hnn4v7msygj2z7nrk2p7zu) is now a manager.
+    Swarm initialized: current node (1i8hnn4v7msygj2z7nrk2p7zu) is now a manager.
 
 To add a worker to this swarm, run the following command:
 
