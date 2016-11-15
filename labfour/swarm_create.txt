@@ -1,17 +1,22 @@
-<<<<<<< HEAD
-docker-machine create --driver azure --azure-subscription-id 8bae2860-70c1-4614-b55a-60e97f4248dc --azure-location westus --azure-size Standard_A1 --azure-resource-group ContainersLabSwarm2 --azure-ssh-user sysadmin swarm-leader
 
-docker-machine create --driver azure --azure-subscription-id 8bae2860-70c1-4614-b55a-60e97f4248dc --azure-location westus --azure-size Standard_A1 --azure-resource-group ContainersLabSwarm2 --azure-ssh-user sysadmin swarm-node-1
+docker-machine create --driver azure --azure-subscription-id 8bae2860-70c1-4614-b55a-60e97f4248dc --azure-location westus --azure-size Standard_A1 --azure-resource-group ContainersSwarmMode --azure-ssh-user sysadmin swarm-leader
 
-docker-machine create --driver azure --azure-subscription-id 8bae2860-70c1-4614-b55a-60e97f4248dc --azure-location westus --azure-size Standard_A1 --azure-resource-group ContainersLabSwarm2 --azure-ssh-user sysadmin swarm-node-2
+docker-machine create --driver azure --azure-subscription-id 8bae2860-70c1-4614-b55a-60e97f4248dc --azure-location westus --azure-size Standard_A1 --azure-resource-group ContainersSwarmMode --azure-ssh-user sysadmin swarm-node-1
+
+docker-machine create --driver azure --azure-subscription-id 8bae2860-70c1-4614-b55a-60e97f4248dc --azure-location westus --azure-size Standard_A1 --azure-resource-group ContainersSwarmMode --azure-ssh-user sysadmin swarm-node-2
+
+docker-machine env swarm-leader
+
+docker
 
 azure vm list ContainersLabSwarm2
 azure vm list-ip-address ContainersLabSwarm2
 
+
 ================================================
 docker run swarm create  ## creates token in docker hub hosted discovery service ##
 
-docker-machine create --driver azure --azure-subscription-id 8bae2860-70c1-4614-b55a-60e97f4248dc --azure-location westus --azure-size Standard_A1 --azure-resource-group ContainersLabSwarm2 --azure-ssh-user sysadmin --swarm --swarm-master --swarm-discovery token://2d670a32fdaf6073f77b643cb5b5d04c swarm-master2
+docker-machine create --driver azure --azure-subscription-id 8bae2860-70c1-4614-b55a-60e97f4248dc --azure-location westus --azure-size Standard_A1 --azure-resource-group ContainersLabSwarm2 --azure-ssh-user sysadmin --swarm --swarm-master --swarm-discovery token://2d670a32fdaf6073f77b643cb5b5d04c swarm-master
 
 docker-machine create --driver azure --azure-subscription-id 8bae2860-70c1-4614-b55a-60e97f4248dc --azure-location westus --azure-size Standard_A1 --azure-resource-group ContainersLabSwarm2 --azure-ssh-user sysadmin --swarm --swarm-discovery token://2d670a32fdaf6073f77b643cb5b5d04c swarm-node-1
 
