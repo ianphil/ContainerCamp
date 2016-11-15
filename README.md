@@ -9,7 +9,7 @@ This will setup cmd line access to Azure and works on OSX, Linux, even Windows..
 * Setup Step One 	- [Install Azure CLI](setup/xplat-cli-install.md)
 * Setup Step Two 	- [Login to Azure CLI](setup/xplat-cli-login.md)
 * Setup Step Three 	- [Switch Azure CLI to ARM Mode](setup/xplat-cli-arm.md)
-* Setup Step Four	- [Install Docker for Windows](https://www.docker.com/)
+* Setup Step Four	- [Install Docker for Windows or Mac](https://www.docker.com/)
 
 ## Lab One: Getting Familiar with Azure Resource Manager ##
 This lab will get you familiar with using the Azure CLI for deploying resources to Azure. We'll use Azure Resource Manager (ARM) Templates to describe what we want created in Azure. For More information about ARM and ARM Templates see: [Azure Resource Manager Overview](labone/arm-overview.md).
@@ -27,13 +27,11 @@ In this lab you will build a Windows 2016 Server TP5 Container Host and deploy W
 * [Windows Containers on Windows Server](labthree/windows-containers.md)
 
 ## Lab Four: Setup Docker Swarm and Deploy Some Containers ##
-In this lab you will deploy Docker Swarm. Once you have a swarm you will deploy some things to it...
+In this lab you will deploy Docker with swarm mode, using docker-machine to deploy to Azure. Once you have a swarm you will deploy some things to it...
 
-* [Deploy Docker Swarm](labfour/deploy-docker-swarm.md)
+* [Deploy Docker using swarm mode](labfour/deploy-docker-swarm.md)
 
-> **NOTE** -- In this lab we need to switch azure-cli mode from ARM to ASM. We'll also be using a secure docker endopoint see [Protect the Docker daemon socket](https://docs.docker.com/engine/security/https/) for more information.
-
-## Lab Five: Setup Azure Container Service ##
+## OPTIONAL - Lab Five: Setup Azure Container Service ##
 In this lab we'll look at Microsoft Azure's Container as a Service solution called: Azure Container Service (ACS).
 
 * [Deploy Azure Container Service](labfive/deploy-acs.md)
