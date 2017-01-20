@@ -2,6 +2,17 @@
 
 [Docker](https://www.docker.com/) is one of the most popular virtualization approaches that uses Linux containers rather than virtual machines as a way of isolating application data and computing on shared resources. This topic describes when and how to use [Docker Machine](https://docs.docker.com/machine/) (the `docker-machine` command) to create new Linux VMs in Azure enabled as a docker host for your Linux containers.
 
+## Installing docker-machine
+If you are using docker locally on your PC or Mac, docker-machine is installed as part of the Docker toolbox installation.  If you want to use docker-machine on a linux system (such as the VM you created in Lab 2), you need to manually install docker-machine using the instructions located on the [Docker website.](https://docs.docker.com/machine/install-machine/), repeated here for convenience:
+
+```
+curl -L https://github.com/docker/machine/releases/download/v0.9.0/docker-machine-`uname -s`-`uname -m` >/tmp/docker-machine &&
+    chmod +x /tmp/docker-machine &&
+    sudo cp /tmp/docker-machine /usr/local/bin/docker-machine
+```
+
+For the rest of the lessons, it's your choice whether to use docker-machine on your PC/Mac or to use the VM from lab 2 with docker-machine installed.
+
 
 ## Create VMs with Docker Machine
 
