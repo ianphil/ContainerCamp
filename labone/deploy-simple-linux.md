@@ -40,7 +40,7 @@ From the command line we'll ssh to the server, feel free to poke around once con
 
     ssh username@DNS-LABLE-YOU-CREATED.eastus.cloudapp.azure.com
 
-> On Windows and need SSH? [Download Putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).
+> On Windows and need SSH? [Download Putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) or try [Bitvise SSH](https://www.bitvise.com/ssh-client-download)
 
 ## Delete the Resource Group ##
 This command will remove everything you just created!
