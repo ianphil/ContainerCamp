@@ -1,7 +1,7 @@
 # How to use docker with swarm
 This topic shows a very simple way to use [docker engine with in swarm mode](https://docs.docker.com/engine/swarm/) to create a swarm-managed cluster on Azure. It creates three virtual machines in Azure, one to act as the swarm manager, and two as part of the cluster of docker hosts. When you are finished, you can use swarm to see the cluster and then begin to use docker on it. 
 
-> This topic uses docker with swarm and the Azure CLI *without* using swarm features built into **docker-machine** in order to show how the different tools work together but remain independent. **docker-machine** has **--swarm** switches that enable you to use **docker-machine** to directly add nodes to a swarm. For an example, see the [docker-machine](https://github.com/docker/machine) documentation. However, we will be using the non-swarm related **docker-machine** commands to deploy the machines to Azure and to connect to them remotely to manage the swarm.
+> This topic uses docker with swarm and the Azure CLI *without* using legacy swarm features built into **docker-machine**. **docker-machine** has **--swarm** switches that enable you to use **docker-machine** to directly add nodes to a swarm, but these implement the legacy swarm service, not the newer **swarm-mode**. For an example, see the [docker-machine](https://github.com/docker/machine) documentation. However, we will be using the non-swarm related **docker-machine** commands to deploy the machines to Azure and to connect to them remotely to manage swarm-mode.
 
 For the differences between Docker Swarm and Docker Swarm Mode, there is a great explaination [here](http://stackoverflow.com/questions/38474424/the-relation-between-docker-swarm-and-docker-swarmkit/38483429).
 
@@ -16,7 +16,7 @@ This topic creates four VMs, but you can use any number you want. **docker-machi
 **Build Swarm VMs**
 Put your Subscription ID from above in the code before running these commands.  You may also want to change the azure location, resource group name and machine names to your liking. Several other switches are available with the [Azure driver](https://docs.docker.com/machine/drivers/azure/) to control the deployment. 
 
-    $ docker-machine create --driver azure --azure-subscription-id <SUB ID> --azure-location westus --azure-size Standard_A1 --azure-resource-group ContainersSwarmMode --azure-open-port 8080 --azure-ssh-user sysadmin swarm-leader
+    $ docker-machine create --driver azure --azure-subscription-id <SUB ID> --azure-location westus --azure-size Standard_A1 --azure-resource-group ContainersSwarmMode --azure-open-port 8080 --azure-ssh-user sysadmin swarm-master-east
 
     $ docker-machine create --driver azure --azure-subscription-id <SUB ID> --azure-location westus --azure-size Standard_A1 --azure-resource-group ContainersSwarmMode --azure-ssh-user sysadmin swarm-node-1
 
