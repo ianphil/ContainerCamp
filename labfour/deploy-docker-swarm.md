@@ -107,7 +107,7 @@ See what node the container is running on:
 
 Scale the service up to three nodes:
 
-    $ docker-machine ssh <MASTER VM NAME> sudo docker service scale my_web =3
+    $ docker-machine ssh <MASTER VM NAME> sudo docker service scale my_web=3
 
 Inspect the details of the service. If you leave off the "pretty" switch, you'll get a response in JSON:
 
