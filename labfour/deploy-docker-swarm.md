@@ -107,13 +107,13 @@ See what node the container is running on:
 
 Scale the service up to three nodes:
 
-    $ docker-machine ssh <MASTER VM NAME> sudo docker service scale my_web =3
+    $ docker-machine ssh <MASTER VM NAME> sudo docker service scale my_web=3
 
 Inspect the details of the service. If you leave off the "pretty" switch, you'll get a response in JSON:
 
     $ docker-machine ssh <MASTER VM NAME> sudo docker service inspect --pretty my_web
 
-Check that your website is accessible via the external IP address of one of the deployed nodes. Then delete the service:
+Check that your website is accessible via the external (public) IP address of the swarm master on port 8080 (ex XXX.XXX.XXX.XXX:8080), then delete the service:
 
     $ docker-machine ssh <MASTER VM NAME> sudo docker service rm my_web
 
