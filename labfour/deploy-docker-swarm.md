@@ -11,7 +11,7 @@ This topic creates four VMs, but you can use any number you want. **docker-machi
 
 **Confirm your Azure Subscription**
 
-    azure account set 8bae2860-70c1-4614-b55a-60e97f4248dc
+    az account list
 
 **Build Swarm VMs**
 Put your Subscription ID from above in the code before running these commands.  You may also want to change the azure location, resource group name and machine names to your liking. Several other switches are available with the [Azure driver](https://docs.docker.com/machine/drivers/azure/) to control the deployment. 
@@ -24,7 +24,7 @@ Put your Subscription ID from above in the code before running these commands.  
 
 When you're done you should be able to use **azure vm list** to see your Azure VMs:
 
-    $ azure vm list -g <RESOURCE GROUP NAME>
+    $ az vm list -g <RESOURCE GROUP NAME>
 
     data:    ResourceGroupName  Name               ProvisioningState  PowerState  Location  Size
     data:    -----------------  -----------------  -----------------  ----------  --------  -----------
