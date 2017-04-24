@@ -11,10 +11,9 @@ We assume you have an Azure Subscription... If you don't, break out your Microso
 ## Azure Setup:  ##
 This will setup cmd line access to Azure and works on OSX, Linux, even Windows.... At the bottom of setup step one, there is a Docker Image that will run the CLI in a container. Don't you think that's the right choice for this...
 
-* Setup Step One 	- [Install Azure CLI](setup/xplat-cli-install.md)
-* Setup Step Two 	- [Login to Azure CLI](setup/xplat-cli-login.md)
-* Setup Step Three 	- [Switch Azure CLI to ARM Mode](setup/xplat-cli-arm.md)
-* Setup Step Four	- [Install Docker for Windows or Mac](https://www.docker.com/)
+* Setup Step One 	  - [Install Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
+* Setup Step Two 	  - [Login to Azure CLI](setup/xplat-cli-login.md)
+* Setup Step Three	- [Install Docker for Windows or Mac](https://www.docker.com/)
 
 ## Lab One: Getting Familiar with Azure Resource Manager ##
 This lab will get you familiar with using the Azure CLI for deploying resources to Azure. We'll use Azure Resource Manager (ARM) Templates to describe what we want created in Azure. For More information about ARM and ARM Templates see: [Azure Resource Manager Overview](labone/arm-overview.md).
