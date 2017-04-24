@@ -13,36 +13,31 @@ A resource group is a grouping of Azure resouces that can be managed and secured
 
 **Create a resource group from the Azure-CLI:**
 
-    azure group create {RESOURCE GROUP NAME} eastus
+    az group create --name {RESOURCE GROUP NAME} -l eastus
 
-> Replace {RESOURCE GROUP NAME} with whatever you like. The "eastus" at the end is the data center location. There something like 22+ DCs now...
+> Replace {RESOURCE GROUP NAME} with whatever you like. The "eastus" at the end is the data center location. There are more than  22+ locations....
 
 ## Deploy the VM ##
 Now it's time to create a VM... 
 
-**Deploy an ARM Template using the Azure-CLI:**
+**Deploy an ARM Template using the Azure Portal:**
 
-    azure group deployment create {RESOURCE GROUP NAME} {DEPLOYMENT NAME} --template-uri https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-vm-simple-linux%2Fazuredeploy.json" target="_blank">
+    <img src="http://azuredeploy.net/deploybutton.png"/>
+</a>
+<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-vm-simple-linux%2Fazuredeploy.json" target="_blank">
+    <img src="http://armviz.io/visualizebutton.png"/>
+</a>
 
-> Replace {RESOURCE GROUP NAME} with the resource group name you just created.
-
-> Replace {DEPLOYMENT NAME} with whatever you like.
-
-This command creates a deployment with the resource manager and passes the URI of the Linux template we just reviewed. It will also prompt you for the following parameters:
-
-1. Username (don't use "admin")
-2. Password (needs to be more than 8 chars and be complex)
-3. DNS Label (this will be the dns prefix used to connect to the box)
-4. Storage Account Name (blob storage for VM Disks)
 
 ## SSH to your new Linux Box ##
 From the command line we'll ssh to the server, feel free to poke around once connected.
 
-    ssh username@DNS-LABLE-YOU-CREATED.eastus.cloudapp.azure.com
+    ssh username@DNS-LABEL-YOU-CREATED.eastus.cloudapp.azure.com
 
 > On Windows and need SSH? [Download Putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) or try [Bitvise SSH](https://www.bitvise.com/ssh-client-download)
 
 ## Delete the Resource Group ##
 This command will remove everything you just created!
 
-    azure group delete {RESOURCE GROUP NAME} -q
+    az group delete --name {RESOURCE GROUP NAME} --no-wait
