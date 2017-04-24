@@ -23,24 +23,20 @@ Yup! It's time to get serious... In this lab we'll deploy a VM using an ARM Temp
 ## Deploy a VM Running Docker
 **Create a resource group from the Azure-CLI:**
 
-    azure group create {RESOURCE GROUP NAME} eastus
+    az group create --name {RESOURCE GROUP NAME} -l eastus
 
 > Replace {RESOURCE GROUP NAME} with whatever you like. The "eastus" at the end is the data center location. There something like 22+ DCs now...
 
-**Deploy an ARM Template using the Azure-CLI:**
+**Deploy an ARM Template using the Azure Portal:**
 
-    azure group deployment create <my-resource-group> <my-deployment-name> --template-uri https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/docker-simple-on-ubuntu/azuredeploy.json
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fazure-quickstart-templates%2Fmaster%2Fdocker-simple-on-ubuntu%2Fazuredeploy.json" target="_blank">
+    <img src="http://azuredeploy.net/deploybutton.png"/>
+</a>
+<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fazure-quickstart-templates%2Fmaster%2Fdocker-simple-on-ubuntu%2Fazuredeploy.json" target="_blank">
+    <img src="http://armviz.io/visualizebutton.png"/>
+</a>
 
-> Replace {RESOURCE GROUP NAME} with the resource group name you just created.
 
-> Replace {DEPLOYMENT NAME} with whatever you like.
-
-This command creates a deployment with the resource manager and passes the URI of the Docker template. It will also prompt you for the following parameters:
-
-1. Username (don't use "admin")
-2. Password (needs to be more than 8 chars and be complex)
-3. DNS Label (this will be the dns prefix used to connect to the box)
-4. Storage Account Name (blob storage for VM Disks)
 
 ## SSH to your new Linux Box ##
 From the command line we'll ssh to the server, feel free to poke around once connected.
@@ -95,4 +91,4 @@ Use the Docker Docs and create your own image... A good place to start is:
 ## Delete the Resource Group ##
 This command will remove everything you just created!
 
-    azure group delete {RESOURCE GROUP NAME} -q
+    az group delete --name {RESOURCE GROUP NAME} --no-wait
