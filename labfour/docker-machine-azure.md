@@ -115,6 +115,5 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 d5b78f27b335        nginx               "nginx -g 'daemon off"   5 minutes ago       Up 5 minutes        0.0.0.0:80->80/tcp, 443/tcp   goofy_mahavira
 ```
 
-And check to see the running container, type `docker-machine ip <VM name>` to find the IP address (if you forgot from the `env` command):
+And check to see the running container, type `docker-machine ip <VM name>` to find the IP address (if you forgot from the `env` command)
 
-![Running ngnix container](https://raw.githubusercontent.com/Azure/azure-content/master/articles/virtual-machines/media/virtual-machines-linux-docker-machine/nginxsuccess.png)
