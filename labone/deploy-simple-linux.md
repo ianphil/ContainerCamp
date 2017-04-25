@@ -37,6 +37,14 @@ From the command line we'll ssh to the server, feel free to poke around once con
 
 > On Windows and need SSH? [Download Putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) or try [Bitvise SSH](https://www.bitvise.com/ssh-client-download)
 
+## Alternative/Optional:  Deploy a VM using the CLI
+
+This command creates an Ubuntu VM:
+```
+ az vm create -n MyVm -g {resourcegroupname} --image UbuntuLTS --admin-username adminuser --generate-ssh-keys --verbose
+ az vm list
+```
+
 ## Delete the Resource Group ##
 This command will remove everything you just created!
 
