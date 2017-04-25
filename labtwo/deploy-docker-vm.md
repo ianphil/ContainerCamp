@@ -27,7 +27,17 @@ Yup! It's time to get serious... In this lab we'll deploy a VM using an ARM Temp
 
 > Replace {RESOURCE GROUP NAME} with whatever you like. The "eastus" at the end is the data center location. There something like 22+ DCs now...
 
-**Deploy an ARM Template using the Azure Portal:**
+
+## Create VM with docker using cli
+
+```
+az vm create -n MyVm -g {resourcegroupname} --image UbuntuLTS --admin-username adminuser --generate-ssh-keys --verbose
+az vm extension set -n DockerExtension --publisher Microsoft.Azure.Extensions --version 1.2.2 --vm-name {vm name} --resource-group {resource group name} 
+az vm list-ip-addresses -g {resourcegroupname}
+```
+
+**Alternate: Deploy an ARM Template using the Azure Portal:**
+
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fazure-quickstart-templates%2Fmaster%2Fdocker-simple-on-ubuntu%2Fazuredeploy.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
@@ -36,13 +46,6 @@ Yup! It's time to get serious... In this lab we'll deploy a VM using an ARM Temp
     <img src="http://armviz.io/visualizebutton.png"/>
 </a>
 
-## Alternative:  Create VM with docker using cli
-
-```
-az vm create -n MyVm -g {resourcegroupname} --image UbuntuLTS --admin-username adminuser --generate-ssh-keys --verbose
-az vm extension set -n DockerExtension --publisher Microsoft.Azure.Extensions --version 1.2.2 --vm-name {vm name} --resource-group {resource group name} 
-az vm list-ip-addresses -g {resourcegroupname}
-```
 
 ## SSH to your new Linux Box ##
 From the command line we'll ssh to the server, feel free to poke around once connected.
