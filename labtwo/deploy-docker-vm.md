@@ -47,7 +47,7 @@ az vm list-ip-addresses -g {resourcegroupname}
 ## SSH to your new Linux Box ##
 From the command line we'll ssh to the server, feel free to poke around once connected.
 
-    ssh username@DNS-LABEL-YOU-CREATED.eastus.cloudapp.azure.com
+    ssh username@{ipaddress}
 
 > On Windows and need SSH? [Download Putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).
 
