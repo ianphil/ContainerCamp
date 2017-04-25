@@ -10,7 +10,7 @@ A resource group is a grouping of Azure resouces that can be managed and secured
 
 **Create a resource group from the Azure-CLI:**
 
-    azure group create {RESOURCE GROUP NAME} eastus
+    az group create --name {RESOURCE GROUP NAME} -l eastus
 
 > Replace {RESOURCE GROUP NAME} with whatever you like. The "eastus" at the end is the data center location. There something like 22+ DCs now...
 
@@ -19,7 +19,7 @@ Now it's time to create a VM...
 
 **Deploy an ARM Template using the Azure-CLI:**
 
-    azure group deployment create {RESOURCE GROUP NAME} {DEPLOYMENT NAME} --template-uri https://raw.githubusercontent.com/tripdubroot/ContainerCamp/master/labthree/WindowsVirtualMachine.json
+    az group deployment create -g {RESOURCE GROUP NAME} -n {DEPLOYMENT NAME} --template-uri https://raw.githubusercontent.com/tripdubroot/ContainerCamp/master/labthree/WindowsVirtualMachine.json
 
 > Replace {RESOURCE GROUP NAME} with the resource group name you just created.
 
