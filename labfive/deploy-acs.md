@@ -20,7 +20,7 @@ Create an Azure Resource Group and Container Service cluster with the following 
 
 ```
 az group create --name MySwarmRG -l eastus
- az acs create -g MySwarmRG -n MySwarmService --orchestrator-type Swarm -l eastus --generate-ssh-keys --verbose
+az acs create -g MySwarmRG -n MySwarmService --orchestrator-type Swarm -l eastus --generate-ssh-keys --verbose
 ```
 
 ## Alternative:  Create service by using the Azure Portal
