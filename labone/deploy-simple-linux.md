@@ -43,6 +43,7 @@ This command creates an Ubuntu VM:
 ```
  az vm create -n MyVm -g {resourcegroupname} --image UbuntuLTS --admin-username adminuser --generate-ssh-keys --verbose
  az vm list
+ az vm list-ip-addresses
 ```
 
 # Delete the Resource Group ##
