@@ -36,12 +36,18 @@ Yup! It's time to get serious... In this lab we'll deploy a VM using an ARM Temp
     <img src="http://armviz.io/visualizebutton.png"/>
 </a>
 
+## Alternative:  Create VM with docker using cli
 
+```
+az vm create -n MyVm -g {resourcegroupname} --image UbuntuLTS --admin-username adminuser --generate-ssh-keys --verbose
+az vm extension set -n DockerExtension --publisher Microsoft.Azure.Extensions --version 1.2.2 --vm-name {vm name} --resource-group {resource group name} 
+az vm list-ip-addresses -g {resourcegroupname}
+```
 
 ## SSH to your new Linux Box ##
 From the command line we'll ssh to the server, feel free to poke around once connected.
 
-    ssh username@DNS-LABLE-YOU-CREATED.eastus.cloudapp.azure.com
+    ssh username@DNS-LABEL-YOU-CREATED.eastus.cloudapp.azure.com
 
 > On Windows and need SSH? [Download Putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).
 
