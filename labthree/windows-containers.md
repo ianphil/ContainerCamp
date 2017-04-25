@@ -19,7 +19,8 @@ Now it's time to create a VM...
 
 **Deploy an ARM Template using the Azure-CLI:**
 
-    az group deployment create -g {RESOURCE GROUP NAME} -n {DEPLOYMENT NAME} --template-uri https://raw.githubusercontent.com/larryms/ContainerCamp/master/labthree/WindowsVirtualMachine.json
+    az group deployment create -g {RESOURCE GROUP NAME} - {DEPLOYMENT NAME} --template-uri https://raw.githubusercontent.com/larryms/ContainerCamp/master/labthree/WindowsVirtualMachine.json
+    az vm list-ip-addresses -g {resourcegroupname}
 
 > Replace {RESOURCE GROUP NAME} with the resource group name you just created.
 
@@ -34,7 +35,7 @@ This command creates a deployment with the resource manager and passes the URI o
 ## Remote Desktop to your new Windows Box ##
 From the start menu open Microsoft Remote Desktop
 
-    DNS-LABLE-YOU-CREATED.eastus.cloudapp.azure.com
+    **use the ip address of your VM
 
 
 **The below content is preliminary content and subject to change.**
