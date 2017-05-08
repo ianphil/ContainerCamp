@@ -8,22 +8,16 @@ We assume you have an Azure Subscription... If you don't, break out your Microso
 * [IT Pro Cloud Essentials Program](https://www.microsoft.com/itprocloudessentials/en-US) – Also comes with $25 a month of Azure credit for 12 months.
 
 
-## Azure Setup:  ##
-This will setup cmd line access to Azure and works on OSX, Linux, even Windows.... At the bottom of setup step one, there is a Docker Image that will run the CLI in a container. Don't you think that's the right choice for this...
+## Lab One: Create an Azure Linux Jumpbox  ##
+In this setup, you will create a linux jumpbox VM in Azure using the Azure Portal, install the Azure cli, and install docker on the vm.
 
-* Setup Step One 	  - [Install Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
-* Setup Step Two 	  - [Login to Azure CLI](setup/xplat-cli-login.md)
-* Setup Step Three	- [Install Docker for Windows or Mac](https://www.docker.com/)
+- Setup Step 1: [Deploy a simple Linux VM jumpbox using portal](setup/deploy-linuxjumpbox.md)
+- Setup Step 2: [Login to Azure CLI](setup/xplat-cli-login.md)
+- Setup Step 3: [Install Docker on the jumpbox](setup/azdockerinstall.md)
 
-## Lab One: Getting Familiar with Azure Resource Manager ##
-This lab will get you familiar with using the Azure CLI for deploying resources to Azure. We'll use Azure Resource Manager (ARM) Templates to describe what we want created in Azure. For More information about ARM and ARM Templates see: [Azure Resource Manager Overview](labone/arm-overview.md).
+## Lab Two: Deploy some containers on your jumpbox ##
 
-* [Deploy a simple Linux VM using the Quick Start Templates and the Azure CLI](labone/deploy-simple-linux.md)
-
-## Lab Two: Run Docker on a VM in Azure ##
-In this lab you will setup a VM like in labone, but it will have docker... We'll deploy nginx and hit the default website from a browser.
-
-* [Deploy a Docker VM using the Quick Start Template](labtwo/deploy-docker-vm.md)
+* [Use the Jumpbox to deploy containers](labtwo/deploy-docker-vm.md)
 
 ## Lab Three: Configure a Windows Container Host ##
 In this lab you will build a Windows 2016 Server TP5 Container Host and deploy Windows containers.
@@ -31,7 +25,7 @@ In this lab you will build a Windows 2016 Server TP5 Container Host and deploy W
 * [Windows Containers on Windows Server](labthree/windows-containers.md)
 
 ## Lab Four: Setup Docker Swarm and Deploy Some Containers ##
-In this lab you will deploy Docker with swarm mode, using docker-machine to deploy to Azure. Once you have a swarm you will deploy some things to it...
+In this lab you will deploy Docker with swarm mode, using an acs-machine template to deploy to Azure. Once you have a swarm you will deploy some things to it...
 
 * [Set up Docker Machine](labfour/docker-machine-azure.md)
 * [Deploy Docker using swarm mode](labfour/deploy-docker-swarm.md)

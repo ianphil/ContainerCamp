@@ -1,78 +1,34 @@
-
-
 # Windows Containers on Windows Server
-Let's set the stage, we want to deploy a VM into Azure. This VM will be a Windows 2016 Server TP5 without docker. After this is deployed we will follow the manual steps to setup Windows Containers and Docker. 
+In this lab, we're going to deploy a Windows 2016 server VM running docker into Azure.  To save some time, this server will already have Docker pre-installed, and it will also have docker images for Windows Server core pre-cached.
 
-1. Have a look at the [WindowsVirtualMachine.json](WindowsVirtualMachine.json) file that we will be deploying.
+1. To start, in your browser, go to the Azure Portal, Click on the "+" in the upper right, then in the search box type 'Windows Server 2016', then press enter to search.
+2. Select the image for 'Windows Server 2016 Datacenter - with Containers', and on the right, click the 'Create' button.
+3. On the basics page, fill in the following:
+    1. **Name:**    winjumpbox      *(your choice)* 
+    1. **Username:**    adminuser
+    2. **Password:**    *enter a password*
+    3. **Resource Group:**  Use existing -> jumpboxrg
 
-## Create Resource Group ##
-A resource group is a grouping of Azure resouces that can be managed and secured as a single unit. Read "I can delete every resource in a resource group by deleting the resource group"... kind of scary.
+    Then click the 'OK' button
 
-**Create a resource group from the Azure-CLI:**
+4. On the next page, choose your machine size.  Since our images are somewhat larger, choose a DS2_V2.
+3. On the 'Settings' page, just click 'OK'
+4. Finally, on the 'Summary' page, review the settings, then click 'OK'
 
-    az group create --name {RESOURCE GROUP NAME} -l eastus
+At this point, your Windows VM will begin to deploy.   This may take a minute or two.
 
-> Replace {RESOURCE GROUP NAME} with whatever you like. The "eastus" at the end is the data center location. There something like 22+ DCs now...
+Once your VM has deployed, take a look at the Overview page.  Click on the 'Connect' button at the top to launch an RDP session into your new server.
 
-## Deploy the VM ##
-Now it's time to create a VM... 
+## On the Windows Server
 
-**Deploy an ARM Template using the Azure Portal
-
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Flarryms%2FContainerCamp%2Fmaster%2Flabthree%2FWindowsVirtualMachine.json" target="_blank">
-    <img src="http://azuredeploy.net/deploybutton.png"/>
-</a>
-
-when done, run the following from your command prompt:
-    az vm list-ip-addresses -g {resourcegroupname}
-
-
-## Remote Desktop to your new Windows Box ##
-From the start menu open Microsoft Remote Desktop
-
-    **use the ip address of your VM
-
-
-**The below content is preliminary content and subject to change.**
-
-This exercise will walk through basic deployment and use of the Windows container feature on Windows Server. After completion, you will have installed the container role and have deployed a simple Windows Server container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. 
-
-From the VM we've just created in Azure:
-
-## 1. Install Container Feature
-
-The container feature needs to be enabled before working with Windows containers. To do so run the following command in an elevated PowerShell session.
-
-```none
-Install-WindowsFeature containers
-```
-
-When the feature installation has completed, reboot the computer.
-
-```none
-Restart-Computer -Force
-```
-
-## 2. Install Docker
-
-Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. For this exercise, both will be installed.
-
-Download and install the Windows-native Docker Engine
-
-```none
-Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
-Install-Module -Name DockerMsftProvider -Force
-Install-Package -Name docker -ProviderName DockerMsftProvider -Force
-Restart-Computer -Force
-```
-
-Docker Engine is now installed and running as service. To verify Docker is running, type:
+Docker Engine should be installed and running as service. To verify Docker is running, launch Powershell and type:
 ```none
 docker version
+
+docker info
 ```
 
-
-## 3. Install Base Container Images
+## 3. Install & Use Base Container Images
 
 Windows containers are deployed from templates or images. Before a container can be deployed, a base OS image needs to be downloaded. To search Docker Hub for Windows container images, run `docker search Microsoft`.  
 
@@ -107,7 +63,8 @@ The following command will download the Windows Server Core base image.
 docker pull microsoft/windowsservercore
 ```
 
-This process can take some time, so take a break and pick back up once the pull has completed.
+Normally, this process would take some time, but this VM already has the windowservercore image precached! :)
+
 
 Once the image is pulled, running `docker images` will return a list of installed images, in this case the Windows Server Core image.
 
@@ -140,12 +97,11 @@ microsoft/windowsservercore   latest              02cb7f65d61b        8 weeks ag
 User `docker run` to deploy the IIS container.
 
 ```none
-docker run -d -p 80:80 microsoft/iis ping -t localhost
+docker run -d -p 80:80 microsoft/iis 
 ```
 
 This command runs the IIS image as a background service (-d) and configures networking such that port 80 of the container host is mapped to port 80 of the container.
 For in depth information on the Docker Run command, see [Docker Run Reference on Docker.com]( https://docs.docker.com/engine/reference/run/).
-
 
 Running containers can be seen with the `docker ps` command. Take note of the container name, this will be used in a later step.
 
@@ -153,23 +109,21 @@ Running containers can be seen with the `docker ps` command. Take note of the co
 docker ps
 
 CONTAINER ID  IMAGE          COMMAND              CREATED             STATUS             PORTS               NAME
-09c9cc6e4f83  microsoft/iis  "ping -t localhost"  About a minute ago  Up About a minute  0.0.0.0:80->80/tcp  big_jang
+09c9cc6e4f83  microsoft/iis  "C:\\ServiceMonitor..."  About a minute ago  Up About a minute  0.0.0.0:80->80/tcp  big_jang
 ```
 
-From a different computer, open up a web browser and enter the IP address of the container host. If everything has been configured correctly, you should see the IIS splash screen. This is being served from the IIS instance hosted in the Windows container.
+Next, we want to browse to our fancy IIS website.  But first, we need to open up port 80 on the Azure network security group firewall.  Back on your linux jumpbox, run the command:
+```
+ az vm open-port --name winjumpbox -g jumpboxrg --port 80
+```
 
-**Note:** if you are working in Azure, the external IP Address of the virtual machine will be needed to access the IIS website.
+From your laptop, open up a web browser and enter the IP address of the Windows Server host. If everything has been configured correctly, you should see the IIS splash screen. This is being served from the IIS instance hosted in the Windows container.
 
 Back on the container host, use the `docker rm` command to remove the container. Note – replace the name of the container in this example with the actual container name.
 
 ```none
 docker rm -f big_jang
 ```
-
-## Delete the Resource Group ##
-This command will remove everything you just created!
-
-    azure group delete {RESOURCE GROUP NAME} -q
 
 ## Next Steps
 
