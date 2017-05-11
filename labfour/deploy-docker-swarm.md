@@ -5,6 +5,9 @@ This lab will create a docker swarm mode cluster using acs-engine.
 1. First, go back to your linux jumpbox and run the following command to generate ssh keys that will be used later in the exercise:  (leave the pasphrase blank)
 ```
 ssh-keygen -t rsa -b 2048 -C "acsadmin@acs" -f ~/.ssh/acs_rsa
+```
+then:
+```
 cat ~/.ssh/acs_rsa.pub
 ```
 2. Now we're going to create the swarm mode cluster by launching the following templte in the Azure portal:  (I recommend you right-click on the link and say 'open in new window' so you can easily come back here):
