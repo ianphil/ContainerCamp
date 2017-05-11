@@ -8,8 +8,10 @@ Run the following (substituting for your jumpbox vm name):
 
 Docker is now installed!  Before we can use it, we need to reboot:
 
- sudo shutdown -r now
- 
+```
+sudo shutdown -r now
+```
+
 Once it's rebooted, ssh back into the server.
 
 Let's test it:
