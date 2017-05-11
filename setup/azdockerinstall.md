@@ -6,7 +6,13 @@ Run the following (substituting for your jumpbox vm name):
  az vm extension set --vm-name jumpbox -g jumpboxrg --name DockerExtension  --publisher Microsoft.Azure.Extensions --version 1.2.2
  ```
 
-Docker is now installed!  Let's test it:
+Docker is now installed!  Before we can use it, we need to reboot:
+
+ sudo shutdown -r now
+ 
+Once it's rebooted, ssh back into the server.
+
+Let's test it:
 ```bash
 sudo docker info
 ```
