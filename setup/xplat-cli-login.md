@@ -14,11 +14,10 @@ Interactively logging in is easy: type `az login` and follow the prompts as show
 az login                                                                                                                                                                                         
 *To sign in, use a web browser to open the page http://aka.ms/devicelogin. Enter the code XXXXXXXXX to authenticate. If you're signing in as an Azure AD application, use the --username and --password parameters.*
 
-Copy the code offered to you, above, and open a browser to http://aka.ms/devicelogin. Enter the code, and then you are prompted to enter the username and password for the identity you want to use. When that process completes, the command shell completes the log in process. It might look something like:
+Copy the code offered to you, above, and open a browser to http://aka.ms/devicelogin. Enter the code, and then you are prompted to enter the username and password for the identity you want to use. When that process completes, the command shell completes the log in process. Confirm you're logged in by running:
 
-	info:    Added subscription Visual Studio Ultimate with MSDN
-	info:    Added subscription Azure Free Trial
-	info:    Setting subscription "Visual Studio Ultimate with MSDN" as default
-	+
-	info:    login command OK
+```
+az account list
+```
+
 
