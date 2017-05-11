@@ -33,7 +33,7 @@ In this lab you will deploy Docker with swarm mode, using an acs-machine templat
 ## Lab Five: Deploy multicontainer applications
 * [Deploy multicontainer applications](labfive/multiapp.md)
 
-In this lab we'll look at Microsoft Azure's Container as a Service solution called: Azure Container Service (ACS).
+
 
 
 <!--
