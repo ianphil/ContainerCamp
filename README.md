@@ -25,13 +25,18 @@ In this lab you will build a Windows 2016 Server TP5 Container Host and deploy W
 * [Windows Containers on Windows Server](labthree/windows-containers.md)
 
 ## Lab Four: Setup Docker Swarm and Deploy Some Containers ##
-In this lab you will deploy Docker with swarm mode, using an acs-machine template to deploy to Azure. Once you have a swarm you will deploy some things to it...
+In this lab you will deploy Docker with swarm mode, using an acs-machine template to deploy to Azure. Once you have a swarm cluster you will deploy some things to it...
 
-* [Set up Docker Machine](labfour/docker-machine-azure.md)
-* [Deploy Docker using swarm mode](labfour/deploy-docker-swarm.md)
+* [Deploy a Swarm Mode cluster](labfour/deploy-docker-swarm.md)
 
-## OPTIONAL - Lab Five: Setup Azure Container Service ##
+<!-- ## Lab Five: Setup Azure Container Service ## -->
+## Lab Five: Deploy multicontainer applications
+* [Deploy multicontainer applications](labfive/multiapp.md)
+
 In this lab we'll look at Microsoft Azure's Container as a Service solution called: Azure Container Service (ACS).
 
+
+<!--
 * [Deploy Azure Container Service](labfive/deploy-acs.md)
 * [Connect and Use ACS](labfive/connect-acs.md)
+-->

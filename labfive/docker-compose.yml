@@ -1,0 +1,26 @@
+version: '3'
+services:
+  mysql:
+    image: "mysql/mysql-server:latest"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: readinglist
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+   
+  api:
+    image: "ravitella/docker-springboot-recommendationservice:latest"
+      
+  web:
+    depends_on:
+      - mysql
+      - api
+    image: "ravitella/docker-springboot-readinglistapplication:latest"
+    ports:
+      - "80:7070"
+    environment:
+      spring.datasource.url: jdbc:mysql://mysql:3306/readinglist?useSSL=false
+      spring.datasource.username: user
+      spring.datasource.password: password
+      externalAPI.recommendationAPIURL: http://api:8080/recommendations
+ 
