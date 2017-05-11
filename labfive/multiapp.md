@@ -50,7 +50,7 @@ services:
 
 This file will be used to deploy a three-tier web application:
 
-![pcf app](labfive/pcfapp.png)
+![pcf app](pcfapp.png)
 
 
 ## Deploy the stack
