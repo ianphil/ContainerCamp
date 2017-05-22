@@ -14,10 +14,13 @@ In this setup, you will create a linux jumpbox VM in Azure using the Azure Porta
 - Setup Step 1: [Deploy a simple Linux VM jumpbox using portal](setup/deploy-linuxjumpbox.md)
 - Setup Step 2: [Login to Azure CLI](setup/xplat-cli-login.md)
 - Setup Step 3: [Install Docker on the jumpbox](setup/azdockerinstall.md)
+- Setup Step 4: [Clone this github respository](setup/gitclone.md)
 
 ## Lab Two: Deploy some containers on your jumpbox ##
 
-* [Use the Jumpbox to deploy containers](labtwo/deploy-docker-vm.md)
+1. [Use the Jumpbox to deploy containers](labtwo/deploy-docker-vm.md)
+2. [Create a custom container](labtwo/buildimage.md)
+3. [Instrument & Monitor your containers](labtwo/oms/oms4containers.md)
 
 ## Lab Three: Configure a Windows Container Host ##
 In this lab you will build a Windows 2016 Server TP5 Container Host and deploy Windows containers.

@@ -134,9 +134,22 @@ Finally, delete the service:
 
     docker service rm my_web
 
-## Optional steps
+## Optional steps:  Monitor your cluster
+On your swarm master, run the following to set up your secrets:
+```
+export WSID=<your workspace id>
+export KEY=<your secret key>
+echo $WSID | docker secret create WSID -
+echo $KEY |  docker secret create KEY -
+docker secret ls
+```
+Then run:
+```
+ docker service create --name omsagent --mode global --mount type=bind, \
+ source=/var/run/docker.sock,destination=/var/run/docker.sock --secret source=WSID, \
+ target=WSID --secret source=KEY,target=KEY -p 25225:25225 -p 25224:25224/udp \
+ --restart-condition=on-failure microsoft/oms:test1
+ ```
+ And in a few minutes, you should see your swarm appear in your OMS workspace.
 
-1. Deploy Redis and apply rolling updates - https://docs.docker.com/engine/swarm/swarm-tutorial/rolling-update/
-2. Learn how to drain nodes - https://docs.docker.com/engine/swarm/swarm-tutorial/drain-node/
-3. Go run other things on your swarm. To look for inspiration, see [https://github.com/docker/swarm/](https://github.com/docker/swarm/), or perhaps a [video](https://www.youtube.com/watch?v=EC25ARhZ5bI).
 

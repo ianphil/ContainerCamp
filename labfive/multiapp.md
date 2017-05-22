@@ -12,10 +12,16 @@ First, ssh into your swarm master (using the instructions from lab 4):
 ## Docker Compose
 For this lab, we're going to use a docker compose file to deploy a multi-container application on our cluster.
 
+<!--
 First, pull down this lab onto the swarm master and cd into lab four:
 
     git clone https://github.com/larryms/ContainerCamp
     cd ContainerCamp/labfive
+--> 
+First, cd into lab five:
+```
+cd ~/labfive
+```
 
 We're going to use the file 'docker-compose.yml'
 
@@ -81,3 +87,4 @@ Now, let's scale the web tier:
     docker service scale READ_web=3
     docker service ls
 
+Take a look at the Docker Visualizer windows you had from Lab four.  Notice how the containers making up this application are deployed in the cluster.
