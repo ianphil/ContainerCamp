@@ -12,20 +12,24 @@ cat ~/.ssh/acs_rsa.pub
 ```
 > Alternatively, if you are comfortable, you can use your local SSH program (such as Bitvise or Putty) to generate the SSH keys.  Just adapt the instructions as necessary.
 
-2. Now we're going to create the swarm mode cluster by launching the following templte in the Azure portal:  (I recommend you right-click on the link and say 'open in new window' so you can easily come back here):<br>
+2. Now we're going to create the swarm mode cluster by launching the following template in the Azure portal:  (I recommend you right-click on the link and say 'open in new window' so you can easily come back here):<br>
+<!--
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fazure-quickstart-templates%2Fmaster%2F101-acsengine-swarmmode%2Fazuredeploy.json" target="_blank">     <img src="http://azuredeploy.net/deploybutton.png"/> </a>
-    
-    Fill in the following:
-    1. **Resource Group:**  Create new -> 'swarmmoderg'
-    2. **Agent Count:**   2
-    3. **Endpoint DNS Name Prefix:**  [yourinitials]lab
-    4. **Admin username:**  adminuser
-    4. **Location:** eastus
-    4. **Master Endpoint DNS Name Prefix:** [yourinitials]master
-    5. **Master VM Size:**  Standard_D2_V2
-    6. **SSH Public Key:**  *paste in the pubic RSA key from step 1*    
+-->
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Flarryms%2FContainerCamp%2Fmaster%2Flabfour%2Fswarmmode%2Fazuredeploy.json" target="_blank">     <img src="http://azuredeploy.net/deploybutton.png"/> </a>
 
-    Then press the 'Puchase' button and the cluster will deploy.
+Fill in the following:
+
+1. **Resource Group:**  Create new -> 'swarmmoderg'
+2. **Agent Count:**   2
+3. **Endpoint DNS Name Prefix:**  [yourinitials]lab
+4. **Admin username:**  adminuser
+4. **Location:** eastus
+4. **Master Endpoint DNS Name Prefix:** [yourinitials]master
+5. **Master VM Size:**  Standard_DS2_V2_Promo
+6. **SSH Public Key:**  *paste in the pubic RSA key from step 1*    
+
+Then press the 'Puchase' button and the cluster will deploy.
 
 ## Connect to the Cluster
 Now that the cluster is deployed, we need to ssh to the master.  The first step is to find the IP address that was assigned to the loadbalancer in front of the master.
