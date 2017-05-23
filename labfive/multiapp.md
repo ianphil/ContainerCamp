@@ -3,11 +3,7 @@
 In this lab we're going to experiment with using docker compose to deploy multi-container applications.
 
 ## Connect to the swarm master
-First, ssh into your swarm master (using the instructions from lab 4):
-
-1. Go into the resource group, find the load balancer that has a name like _swarmm-master-lb-13957614_, and click on it.
-2. On the screen that is displayed, you will see the public IP address listed.  Make note of this.
-3. From your laptop, ssh into this server, e.g, `ssh -i ~/.ssh/acs_rsa adminuser@[ip address]` to connect to the swarm master.
+First, ssh into your swarm master (using the instructions from lab 4)
 
 ## Docker Compose
 For this lab, we're going to use a docker compose file to deploy a multi-container application on our cluster.
@@ -87,4 +83,7 @@ Now, let's scale the web tier:
     docker service scale READ_web=3
     docker service ls
 
-Take a look at the Docker Visualizer windows you had from Lab four.  Notice how the containers making up this application are deployed in the cluster.
+Take a look at the Docker Visualizer window you opened in Lab four.  Notice how the containers making up this application are deployed in the cluster.
+
+
+

@@ -10,7 +10,9 @@ then:
 ```
 cat ~/.ssh/acs_rsa.pub
 ```
-2. Now we're going to create the swarm mode cluster by launching the following templte in the Azure portal:  (I recommend you right-click on the link and say 'open in new window' so you can easily come back here):
+> Alternatively, if you are comfortable, you can use your local SSH program (such as Bitvise or Putty) to generate the SSH keys.  Just adapt the instructions as necessary.
+
+2. Now we're going to create the swarm mode cluster by launching the following templte in the Azure portal:  (I recommend you right-click on the link and say 'open in new window' so you can easily come back here):<br>
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fazure-quickstart-templates%2Fmaster%2F101-acsengine-swarmmode%2Fazuredeploy.json" target="_blank">     <img src="http://azuredeploy.net/deploybutton.png"/> </a>
     
     Fill in the following:
@@ -28,9 +30,9 @@ cat ~/.ssh/acs_rsa.pub
 ## Connect to the Cluster
 Now that the cluster is deployed, we need to ssh to the master.  The first step is to find the IP address that was assigned to the loadbalancer in front of the master.
 
-1. Go into the resource group, find the load balancer that has a name like _swarmm-master-lb-13957614_, and click on it.
-2. On the screen that is displayed, you will see the public IP address listed.  Make note of this.
-3. From your laptop, ssh into this server, e.g, `ssh -i ~/.ssh/acs_rsa adminuser@[ip address]` to connect to the swarm master.
+1. In the portal, go into the resource group for the swarm cluster you just created, scroll down to 'Deployments', then click on "Microsoft.Template".  
+2. You will see a field titled **MASTERFQDN**.  Copy the value of this field as it is the DNS name of your master.  Also note the field **AGENTFQDN** which is the DNS name of the load balancer setting in front of your cluster.  (_You'll need this later_)
+3. From your laptop, ssh into this server, e.g, `ssh -i ~/.ssh/acs_rsa adminuser@[MASTERFQDN]` to connect to the swarm master.
 
 Now that you are on the swarm master, check the status of the cluster by running:
 
@@ -48,14 +50,22 @@ Look for the following information within the resulting output:
 
 ## Begin managing the swarm cluster
 
-To list out your nodes in your cluster:
+First, let's do a little work to configure our cluster for this lab:
+
+    git clone https://github.com/larryms/ContainerCamp.git
+    sh ~/labfour/configswarm.sh
+
+
+Now the cluster is ready to go!
+
+To view the nodes in your cluster:
 
     docker node ls
 
     ID                            HOSTNAME                      STATUS              AVAILABILITY        MANAGER STATUS
     9kexly729ylezsqc6pow6zws7     swarmm-agent-13957614000000   Ready               Active
     kc2sht405ewdmi2qxytsf7y0w     swarmm-agent-13957614000002   Ready               Active
-    nzd4h33heoyobqumqmcn8snue *   swarmm-master-13957614-0      Ready               Pause               Leader
+    nzd4h33heoyobqumqmcn8snue *   swarmm-master-13957614-0      Ready               Active               Leader
     
 ## Deploy Nginx ##
 To deploy an Nginx container run the following command:
@@ -81,18 +91,12 @@ Inspect the details of the service. If you leave off the "pretty" switch, you'll
 
     docker service inspect --pretty my_web
 
-Check that your website is accessible via the external IP address of one of the deployed nodes.  We need to get the IP address of the load balancer deployed in front of the agent group: 
-1. First, go back to the azure portal,  go back to the resource group, and find the load balancer that has a name like _swarmm-agend-lb-13957614_, and click on it.
-2. On the screen that is displayed, you will see the public IP address listed.  Make note of this.
-
-From your browser on your laptop, browse to http://[ip address of agent lb]. You should see the nginx welcome screen.
+From your browser on your laptop, browse to http://[AGENTFQDN]. You should see the nginx welcome screen.
 
 ## Graphically inspect the cluster
 
 Let's use the Docker Visualizer to visually inspect our cluster. 
-1. From the ssh session connected to the master, run: `docker node ls` and make note of the node name of the master
-2. Run the following:  `docker node update --availability active [node name of the master]`
-3. Run the following command to load Docker Visualizer:
+Run the following command to load Docker Visualizer:
 ```
 docker service create \
   --name=viz \
@@ -101,17 +105,8 @@ docker service create \
   --mount=type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
   dockersamples/visualizer
   ```
-4. In your browser, go to the Azure portal, go back to the resource group, find the load balancer that has a name like _swarmm-master-lb-13957614_, and click on it
-5. Click on 'Inbound Nat Rules', then click "+ Add" to add a rule
-6. Fill in the following:
-    1. **Name** Master8080
-    2. **Port** 8080
-    3. **Target Virtual Machine**  Select your master
-    4. **Network IP Configuration**  Select the IP of the master
-
-    Press 'OK'
-
-7. Now in your browser, open a new tab and go to http://[ip address of the Master LB]:8080
+Now in your browser, open a new tab and go to http://[AGENTFQDN]:8080
+> Note the above is _**AGENTFQDN**_, not _MASTERFQDN_.  
 
 You should see a graphical vizualization of your cluster.  You can watch it scale your services up and down:
 
