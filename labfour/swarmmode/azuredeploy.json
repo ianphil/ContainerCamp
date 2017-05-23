@@ -33,10 +33,10 @@
         "Basic_A2",
         "Standard_A1_v2",
         "Standard_A2_v2",
-        "Standard_D2_v2",
-        "Standard_DS2_v2_Promo"
+        "Standard_D2_v2"
+
              ],
-      "defaultValue": "Standard_DS2_v2_Promo",
+      "defaultValue": "Standard_DS2_v2",
       "metadata": {
         "description": "The size of the Virtual Machine."
       },
@@ -81,10 +81,9 @@
         "Basic_A2",
         "Standard_A1_v2",
         "Standard_A2_v2",
-        "Standard_D2_v2",
-        "Standard_DS2_v2_Promo"
+        "Standard_D2_v2"
       ],
-      "defaultValue": "Standard_DS2_v2_Promo",
+      "defaultValue": "Standard_DS2_v2",
       "metadata": {
         "description": "The size of the Virtual Machine."
       },
