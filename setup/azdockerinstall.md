@@ -7,17 +7,18 @@ Run the following (substituting for your jumpbox vm name):
  --name DockerExtension  --publisher Microsoft.Azure.Extensions --version 1.2.2
  ```
 
-Docker is now installed!  Before we can use it, we need to reboot:
+Docker is now installed!  Before we can use it, we need to log out and log in:
 
 ```
-sudo reboot
+exit
+[disconnect]
 ```
 
-Once it's rebooted, ssh back into the server.
+Now ssh back into the server.
 
 Let's test it:
 ```bash
-sudo docker info
+docker info
 ```
 This command will show you info about your docker configation.  A sample:
 ```
