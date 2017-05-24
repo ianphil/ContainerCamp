@@ -56,7 +56,7 @@ Look for the following information within the resulting output:
 
 First, let's do a little work to configure our cluster for this lab:
 
-<!--     git clone https://github.com/larryms/ContainerCamp.git  -->
+    git clone https://github.com/larryms/ContainerCamp.git  
     sh ~/ContainerCamp/labfour/configswarm.sh
 
 
