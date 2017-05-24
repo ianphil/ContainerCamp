@@ -22,7 +22,7 @@ In this setup, you will create a linux jumpbox VM in Azure using the Azure Porta
 2. [Create a custom container](labtwo/buildimage.md)
 3. [Instrument & Monitor your containers](labtwo/oms/oms4containers.md)
 
-## Lab Three: (Optional) Configure a Windows Container Host ##
+## Lab Three: Configure a Windows Container Host ##
 In this lab you will build a Windows 2016 Server Container Host and deploy Windows containers.
 
 * [Windows Containers on Windows Server](labthree/windows-containers.md)
