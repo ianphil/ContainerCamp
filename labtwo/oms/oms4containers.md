@@ -15,7 +15,7 @@ In this section, we are going to set up a container to integrate our Docker envi
 
 2. Retrieve the workspace id and primary key
     1. On the Azure portal dashboard click on the Containers solution tile<br>
-    ![tile](tile.png)
+    ![tile](tile.PNG)
     2. Click on the OMS Portal icon at the top
     3. Click on **Data Sources** connected tile on the home page, then open **Connected Sources**, and then click on **Linux Servers**<br>
     ![datasources](datasources.png)<br>
