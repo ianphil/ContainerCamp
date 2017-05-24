@@ -26,7 +26,7 @@ Fill in the following:
 4. **Admin username:**  adminuser
 4. **Location:** eastus
 4. **Master Endpoint DNS Name Prefix:** [yourinitials]master
-5. **Master VM Size:**  Standard_DS2_V2_Promo
+5. **Master VM Size:**  Standard_DS2_V2
 6. **SSH Public Key:**  *paste in the pubic RSA key from step 1*    
 
 Then press the 'Puchase' button and the cluster will deploy.
