@@ -40,7 +40,7 @@ Now, the natural step would be to try to use our browser to navigate to our mach
 ```bash
 az vm open-port --name jumpbox -g jumpboxrg --port 80
 ```
-**note:  this command may return an error but it actually is executing sucessfully.  I'm investigating....**
+**note:  this command may return an error but it actually is executing sucessfully.  This is a bug in the cli that will be fixed soon**
 
 Now we can try hitting the web server!
 
