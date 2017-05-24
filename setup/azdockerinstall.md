@@ -3,7 +3,8 @@ We're going to use the Azure cli to install Docker on the jumpbox using the Azur
 
 Run the following (substituting for your jumpbox vm name):
 ```
- az vm extension set --vm-name jumpbox -g jumpboxrg --name DockerExtension  --publisher Microsoft.Azure.Extensions --version 1.2.2
+ az vm extension set --vm-name jumpbox -g jumpboxrg \
+ --name DockerExtension  --publisher Microsoft.Azure.Extensions --version 1.2.2
  ```
 
 Docker is now installed!  Before we can use it, we need to reboot:
