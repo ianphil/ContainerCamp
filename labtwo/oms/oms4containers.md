@@ -34,7 +34,7 @@ Run the following command:
 
 ```
 sudo docker run --privileged -d -v /var/run/docker.sock:/var/run/docker.sock \
--v /var/log:/var/log  -e WSID -e KEY \
+-v /var/log:/var/log  -e WSID=$WSID -e KEY=$KEY \
 -p 127.0.0.1:25225:25225 -p 127.0.0.1:25224:25224/udp \
 --name="omsagent" -h=`hostname` --restart=always microsoft/oms
 ```
