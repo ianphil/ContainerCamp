@@ -10,7 +10,7 @@
       ],
       "defaultValue": 2,
       "metadata": {
-        "description": "The number of agents for the cluster.  This value can be from 1 to 100"
+        "description": "The number of agents for the cluster.  This value can be from 1 to 3"
       },
       "type": "int"
     },
@@ -36,7 +36,7 @@
         "Standard_D2_v2"
 
              ],
-      "defaultValue": "Standard_DS2_v2",
+      "defaultValue": "Standard_D2_v2",
       "metadata": {
         "description": "The size of the Virtual Machine."
       },
@@ -83,7 +83,7 @@
         "Standard_A2_v2",
         "Standard_D2_v2"
       ],
-      "defaultValue": "Standard_DS2_v2",
+      "defaultValue": "Standard_D2_v2",
       "metadata": {
         "description": "The size of the Virtual Machine."
       },
