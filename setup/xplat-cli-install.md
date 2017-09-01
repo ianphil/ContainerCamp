@@ -24,5 +24,5 @@ In a Docker host, run:
     docker run -it microsoft/azure-cli
 
 [mac-installer]: http://go.microsoft.com/fwlink/?LinkId=252249
-[windows-installer]: http://go.microsoft.com/?linkid=9828653&clcid=0x409
+[windows-installer]: http://aka.ms/webpi-azure-cli
 [linux-installer]: http://go.microsoft.com/fwlink/?linkid=253472

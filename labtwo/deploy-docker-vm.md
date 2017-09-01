@@ -1,60 +1,13 @@
 # A Very Simple Deployment of a Linux VM Running Docker #
-Yup! It's time to get serious... In this lab we'll deploy a VM using an ARM Template. In this template is new resource called a VM extension. This extends our ability to deploy software or run scripts on the VM after it's created in Azure. There are many different VM extensions, but will be using the Docker VM Extension. The docker extension installs docker on the VM for us.
+Now it's time to run some containers!
 
-    {
-      "type": "Microsoft.Compute/virtualMachines/extensions",
-      "name": "[concat(variables('vmName'),'/', variables('extensionName'))]",
-      "apiVersion": "2015-05-01-preview",
-      "location": "[resourceGroup().location]",
-      "dependsOn": [
-    "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
-      ],
-      "properties": {
-    "publisher": "Microsoft.Azure.Extensions",
-    "type": "DockerExtension",
-    "typeHandlerVersion": "1.0",
-    "autoUpgradeMinorVersion": true,
-    "settings": { }
-      }
-    }
-
-> This extensions supports docker-compose... we'll check that out later.
-
-## Deploy a VM Running Docker
-**Create a resource group from the Azure-CLI:**
-
-    azure group create {RESOURCE GROUP NAME} eastus
-
-> Replace {RESOURCE GROUP NAME} with whatever you like. The "eastus" at the end is the data center location. There something like 22+ DCs now...
-
-**Deploy an ARM Template using the Azure-CLI:**
-
-    azure group deployment create <my-resource-group> <my-deployment-name> --template-uri https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/docker-simple-on-ubuntu/azuredeploy.json
-
-> Replace {RESOURCE GROUP NAME} with the resource group name you just created.
-
-> Replace {DEPLOYMENT NAME} with whatever you like.
-
-This command creates a deployment with the resource manager and passes the URI of the Docker template. It will also prompt you for the following parameters:
-
-1. Username (don't use "admin")
-2. Password (needs to be more than 8 chars and be complex)
-3. DNS Label (this will be the dns prefix used to connect to the box)
-4. Storage Account Name (blob storage for VM Disks)
-
-## SSH to your new Linux Box ##
-From the command line we'll ssh to the server, feel free to poke around once connected.
-
-    ssh username@DNS-LABLE-YOU-CREATED.eastus.cloudapp.azure.com
-
-> On Windows and need SSH? [Download Putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).
 
 ## Docker Hello-World ##
 Now that we have a docker engine to run with, let's do the defacto hello-world app...
 
     docker run hello-world
 
-It's that simple... Docker went out to docker hub and downloaded the image called hello-world and ran it. You should see this output:
+It's that simple... Docker went out to docker hub and downloaded the image called **hello-world** and ran it. You should see this output:
 
     Hello from Docker.
     This message shows that your installation appears to be working correctly.
@@ -79,20 +32,32 @@ It's that simple... Docker went out to docker hub and downloaded the image calle
 ## Docker and NGINX
 Next we'll run the docker image for NGINX. NGINX is an HTTP server and reverse proxy.
 
-    docker run -d -p 80:80 nginx
+    docker run -d -p 80:80 --name nginx nginx
+This should download the image and start the container and setting up the port forwarding on port 80. 
 
-This should download the image and start the container and setting up the port forwarding on port 80. To test, from your browser navigate to the url of your machine (this is the same as the SSH server).
+Now, the natural step would be to try to use our browser to navigate to our machine, right?  I'll save you some time.... this won't work.  The reason is, when we created our VM, Azure's default firewall did not allow for inbound traffic to our VM on port 80.  So to be able to hit this vm, we need to open up the firewall.  We could use the Azure portal to do this, or, as seen below, you can use the azure cli to open the port:
 
-> http://DNS-LABLE-YOU-CREATED.eastus.cloudapp.azure.com
+```bash
+az vm open-port --name jumpbox -g jumpboxrg --port 80
+```
+**note:  this command may return an error but it actually is executing sucessfully.  This is a bug in the cli that will be fixed soon**
 
-You should see the "Welcome to NGINX" default page. Well that's it for this lab... Time to clean up.
+Now we can try hitting the web server!
 
-## Create your own Docker Image ##
-Use the Docker Docs and create your own image... A good place to start is:
+To test, from your browser navigate to the url of your machine (this is the same as the SSH server).  If you don't have it handy run `az vm list-ip-addresses` to find the public ip address.
+
+> http://[ip address of your jumpbox]
+
+You should see the "Welcome to NGINX" default page. Well that's it for this lab.  Let's stop the current nginx container:
+
+    docker stop nginx
+
+
+## Next step:  Build your own image
+Now on to the second part:  [Build your own image](buildimage.md)
+
+
+## Optional, but interesting: Docker Documention ##
+See the Docker Docs for more info on how to create your own images:
 
 * [Build your own images](https://docs.docker.com/engine/userguide/containers/dockerimages/)
-
-## Delete the Resource Group ##
-This command will remove everything you just created!
-
-    azure group delete {RESOURCE GROUP NAME} -q

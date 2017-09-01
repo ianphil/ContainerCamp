@@ -100,5 +100,5 @@ When you have configured the tunnel for Docker Swarm, you can access the Swarm c
 
 Deploy and manage containers with DC/OS or Swarm.
 
-[Working with Azure Container Service and DC/OS](https://azure.microsoft.com/en-us/documentation/articles/container-service-mesos-marathon-rest/)
-[Working with the Azure Container Service and Docker Swarm](https://azure.microsoft.com/en-us/documentation/articles/container-service-docker-swarm/)
+* [Working with Azure Container Service and DC/OS](https://azure.microsoft.com/en-us/documentation/articles/container-service-mesos-marathon-rest/)
+* [Working with the Azure Container Service and Docker Swarm](https://azure.microsoft.com/en-us/documentation/articles/container-service-docker-swarm/)

@@ -1,26 +1,53 @@
 # How to use docker with swarm
-This topic shows a very simple way to use [docker engine with in swarm mode](https://docs.docker.com/engine/swarm/) to create a swarm-managed cluster on Azure. It creates three virtual machines in Azure, one to act as the swarm manager, and two as part of the cluster of docker hosts. When you are finished, you can use swarm to see the cluster and then begin to use docker on it. 
+This lab will create a docker swarm mode cluster using acs-engine.
 
-> This topic uses docker with swarm and the Azure CLI *without* using swarm features built into **docker-machine** in order to show how the different tools work together but remain independent. **docker-machine** has **--swarm** switches that enable you to use **docker-machine** to directly add nodes to a swarm. For an example, see the [docker-machine](https://github.com/docker/machine) documentation. However, we will be using the non-swarm related **docker-machine** commands to deploy the machines to Azure and to connect to them remotely to manage the swarm.
+## Deploy the cluster
+1. First, go back to your linux jumpbox and run the following command to generate ssh keys that will be used later in the exercise:  (leave the pasphrase blank)
+```
+ssh-keygen -t rsa -b 2048 -C "acsadmin@acs" -f ~/.ssh/acs_rsa
+```
+then:
+```
+cat ~/.ssh/acs_rsa.pub
+```
+> Alternatively, if you are comfortable, you can use your local SSH program (such as Bitvise or Putty) to generate the SSH keys.  Just adapt the instructions as necessary.
 
-For the differences between Docker Swarm and Docker Swarm Mode, there is a great explaination [here](http://stackoverflow.com/questions/38474424/the-relation-between-docker-swarm-and-docker-swarmkit/38483429).
+2. Now we're going to create the swarm mode cluster by launching the following template in the Azure portal:  (I recommend you right-click on the link and say 'open in new window' so you can easily come back here):<br>
+<!--
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fazure-quickstart-templates%2Fmaster%2F101-acsengine-swarmmode%2Fazuredeploy.json" target="_blank">     <img src="http://azuredeploy.net/deploybutton.png"/> </a>
+-->
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Flarryms%2FContainerCamp%2Fmaster%2Flabfour%2Fswarmmode%2Fazuredeploy.json" target="_blank">     <img src="http://azuredeploy.net/deploybutton.png"/> </a>
 
+<<<<<<< HEAD
 ## Install docker-machine
 To run this lab, you will need to install `docker-machine` locally. Please see the [installation instructions](https://docs.docker.com/machine/install-machine/) to get started.
 
 ## Create docker hosts with Azure Virtual Machines
+=======
+Fill in the following:
+>>>>>>> 5920e8dbfbf2c677e1d86ec10f7a4c73f67dfad8
 
-This topic creates four VMs, but you can use any number you want. **docker-machine** will save the SSH keys to your local machine.
+1. **Resource Group:**  Create new -> 'swarmmoderg'
+2. **Agent Count:**   2
+3. **Endpoint DNS Name Prefix:**  [yourinitials]lab
+4. **Admin username:**  adminuser
+4. **Location:** eastus
+4. **Master Endpoint DNS Name Prefix:** [yourinitials]master
+5. **Master VM Size:**  Standard_DS2_V2
+6. **SSH Public Key:**  *paste in the pubic RSA key from step 1*    
 
-**Confirm your Azure Subscription**
+Then press the 'Puchase' button and the cluster will deploy.
 
-    azure account set 8bae2860-70c1-4614-b55a-60e97f4248dc
+## Connect to the Cluster
+Now that the cluster is deployed, we need to ssh to the master.  The first step is to find the IP address that was assigned to the loadbalancer in front of the master.
 
-**Build Swarm VMs**
-Put your Subscription ID from above in the code before running these commands.  You may also want to change the azure location, resource group name and machine names to your liking. Several other switches are available with the [Azure driver](https://docs.docker.com/machine/drivers/azure/) to control the deployment. 
+1. In the portal, go into the resource group for the swarm cluster you just created, scroll down to 'Deployments', then click on "Microsoft.Template".  
+2. You will see a field titled **MASTERFQDN**.  Copy the value of this field as it is the DNS name of your master.  Also note the field **AGENTFQDN** which is the DNS name of the load balancer setting in front of your cluster.  (_You'll need this later_)
+3. From your laptop, ssh into this server, e.g, `ssh -i ~/.ssh/acs_rsa adminuser@[MASTERFQDN]` to connect to the swarm master.
 
-    $ docker-machine create --driver azure --azure-subscription-id <SUB ID> --azure-location westus --azure-size Standard_A1 --azure-resource-group ContainersSwarmMode --azure-open-port 8080 --azure-ssh-user sysadmin swarm-leader
+Now that you are on the swarm master, check the status of the cluster by running:
 
+<<<<<<< HEAD
     $ docker-machine create --driver azure --azure-subscription-id <SUB ID> --azure-location westus --azure-size Standard_A1 --azure-resource-group ContainersSwarmMode --azure-ssh-user sysadmin swarm-node-1
 
     $ docker-machine create --driver azure --azure-subscription-id <SUB ID> --azure-location westus --azure-size Standard_A1 --azure-resource-group ContainersSwarmMode --azure-ssh-user sysadmin swarm-node-2
@@ -87,6 +114,9 @@ For each node you need to add to the swarm, run the command provided from the ma
 To check your work, run:
 
     $ docker-machine ssh <MASTER VM NAME> sudo docker info
+=======
+    docker info
+>>>>>>> 5920e8dbfbf2c677e1d86ec10f7a4c73f67dfad8
 
 Look for the following information within the resulting output:
 
@@ -97,39 +127,54 @@ Look for the following information within the resulting output:
      Managers: 1
      Nodes: 3
 
-Repeat for all the other nodes in the cluster. In our case, we do that for **swarm-node-2** and **swarm-node-3**.
 
 ## Begin managing the swarm cluster
 
-To list out your nodes in your cluster:
+First, let's do a little work to configure our cluster for this lab:
 
-    $ docker-machine ssh <MASTER VM NAME> sudo docker node ls
+    git clone https://github.com/larryms/ContainerCamp.git  
+    sh ~/ContainerCamp/labfour/configswarm.sh
 
+
+Now the cluster is ready to go!
+
+<<<<<<< HEAD
     ID                           HOSTNAME           STATUS  AVAILABILITY  MANAGER STATUS
     11x87f4nbee5h7ydd6gy14avp    swarm-node-2       Ready   Active
     1i8hnn4v7msygj2z7nrk2p7zu *  swarm-leader       Ready   Active        Leader
     7rd1gncuhpqrzduwni28khro0    swarm-node-1       Ready   Active
     jdzwv06lzx9qzk6yyuveoy5xd    swarm-node-3       Ready   Active
 
+=======
+To view the nodes in your cluster:
+>>>>>>> 5920e8dbfbf2c677e1d86ec10f7a4c73f67dfad8
 
+    docker node ls
+
+    ID                            HOSTNAME                      STATUS              AVAILABILITY        MANAGER STATUS
+    9kexly729ylezsqc6pow6zws7     swarmm-agent-13957614000000   Ready               Active
+    kc2sht405ewdmi2qxytsf7y0w     swarmm-agent-13957614000002   Ready               Active
+    nzd4h33heoyobqumqmcn8snue *   swarmm-master-13957614-0      Ready               Active               Leader
+    
 ## Deploy Nginx ##
-To deploy a Nginx containers run the following command:
+To deploy an Nginx container run the following command:
 
-    $ docker-machine ssh <MASTER VM NAME> sudo docker service create --replicas 1 --name my_web --publish 8080:80 nginx
+    docker service create --replicas 1 --name my_web --publish 80:80 nginx
 
 Check the service is running:
 
-    $ docker-machine ssh <MASTER VM NAME> sudo docker service ls
+    docker service ls
 
     ID            NAME           REPLICAS  IMAGE   COMMAND
     atz0nm4nx9rg  my_web         1/1       nginx
 
 See what node the container is running on:
 
-    $ docker-machine ssh <MASTER VM NAME> sudo docker service ps my_web
+    docker service ps my_web
 
 Scale the service up to three nodes:
 
+<<<<<<< HEAD
     $ docker-machine ssh <MASTER VM NAME> sudo docker service scale my_web=3
 
 Inspect the details of the service. If you leave off the "pretty" switch, you'll get a response in JSON:
@@ -157,3 +202,68 @@ Then, delete the service:
 ## Notes
 
 In order to save credits in your Azure subscription or reduce costs, it's recommended that you STOP or DELETE the VMs after the completion of the lab.  If you stop the VMs and turn them back on at a future time, the external IP addresses will likely change.  You will need to use docker-machine regenerate-certs to update you SSH access.
+=======
+    docker service scale my_web=3
+
+Inspect the details of the service. If you leave off the "pretty" switch, you'll get a response in JSON:
+
+    docker service inspect --pretty my_web
+
+From your browser on your laptop, browse to http://[AGENTFQDN]. You should see the nginx welcome screen.
+
+## Graphically inspect the cluster
+
+Let's use the Docker Visualizer to visually inspect our cluster. 
+Run the following command to load Docker Visualizer:
+```
+docker service create \
+  --name=viz \
+  --publish=8080:8080/tcp \
+  --constraint=node.role==manager \
+  --mount=type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
+  dockersamples/visualizer
+  ```
+Now in your browser, open a new tab and go to http://[AGENTFQDN]:8080
+> Note the above is _**AGENTFQDN**_, not _MASTERFQDN_.  
+
+You should see a graphical vizualization of your cluster.  You can watch it scale your services up and down:
+
+    docker service scale my_web=5
+    [look at Docker Visualizer]
+    docker service scale my_web=1
+    [look at Docker Visualizer]
+    docker service scale my_web=5
+    [look at Docker Visualizer]
+
+Now mark a node as unavailable, and watch Swarm re-allocate the containers:
+    
+    docker node ls
+    [make a note of one of the agent node names]
+    docker node update --availability=drain [agent node name]
+    [look at docker visualizer ]
+    docker node update --availability active [agent node name]
+
+Finally, delete the service:
+
+    docker service rm my_web
+
+## Optional steps:  Monitor your cluster
+On your swarm master, run the following to set up your secrets:
+```
+export WSID=<your workspace id>
+export KEY=<your secret key>
+echo $WSID | docker secret create WSID -
+echo $KEY |  docker secret create KEY -
+docker secret ls
+```
+Then run:
+```
+ docker service create --name omsagent --mode global --mount type=bind, \
+ source=/var/run/docker.sock,destination=/var/run/docker.sock --secret source=WSID, \
+ target=WSID --secret source=KEY,target=KEY -p 25225:25225 -p 25224:25224/udp \
+ --restart-condition=on-failure microsoft/oms:test1
+ ```
+ And in a few minutes, you should see your swarm appear in your OMS workspace.
+
+
+>>>>>>> 5920e8dbfbf2c677e1d86ec10f7a4c73f67dfad8
