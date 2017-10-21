@@ -18,14 +18,11 @@ cat ~/.ssh/acs_rsa.pub
 -->
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Flarryms%2FContainerCamp%2Fmaster%2Flabfour%2Fswarmmode%2Fazuredeploy.json" target="_blank">     <img src="http://azuredeploy.net/deploybutton.png"/> </a>
 
-<<<<<<< HEAD
 ## Install docker-machine
 To run this lab, you will need to install `docker-machine` locally. Please see the [installation instructions](https://docs.docker.com/machine/install-machine/) to get started.
 
 ## Create docker hosts with Azure Virtual Machines
-=======
 Fill in the following:
->>>>>>> 5920e8dbfbf2c677e1d86ec10f7a4c73f67dfad8
 
 1. **Resource Group:**  Create new -> 'swarmmoderg'
 2. **Agent Count:**   2
@@ -47,7 +44,6 @@ Now that the cluster is deployed, we need to ssh to the master.  The first step 
 
 Now that you are on the swarm master, check the status of the cluster by running:
 
-<<<<<<< HEAD
     $ docker-machine create --driver azure --azure-subscription-id <SUB ID> --azure-location westus --azure-size Standard_A1 --azure-resource-group ContainersSwarmMode --azure-ssh-user sysadmin swarm-node-1
 
     $ docker-machine create --driver azure --azure-subscription-id <SUB ID> --azure-location westus --azure-size Standard_A1 --azure-resource-group ContainersSwarmMode --azure-ssh-user sysadmin swarm-node-2
@@ -114,9 +110,7 @@ For each node you need to add to the swarm, run the command provided from the ma
 To check your work, run:
 
     $ docker-machine ssh <MASTER VM NAME> sudo docker info
-=======
     docker info
->>>>>>> 5920e8dbfbf2c677e1d86ec10f7a4c73f67dfad8
 
 Look for the following information within the resulting output:
 
@@ -138,16 +132,13 @@ First, let's do a little work to configure our cluster for this lab:
 
 Now the cluster is ready to go!
 
-<<<<<<< HEAD
     ID                           HOSTNAME           STATUS  AVAILABILITY  MANAGER STATUS
     11x87f4nbee5h7ydd6gy14avp    swarm-node-2       Ready   Active
     1i8hnn4v7msygj2z7nrk2p7zu *  swarm-leader       Ready   Active        Leader
     7rd1gncuhpqrzduwni28khro0    swarm-node-1       Ready   Active
     jdzwv06lzx9qzk6yyuveoy5xd    swarm-node-3       Ready   Active
 
-=======
 To view the nodes in your cluster:
->>>>>>> 5920e8dbfbf2c677e1d86ec10f7a4c73f67dfad8
 
     docker node ls
 
@@ -174,7 +165,6 @@ See what node the container is running on:
 
 Scale the service up to three nodes:
 
-<<<<<<< HEAD
     $ docker-machine ssh <MASTER VM NAME> sudo docker service scale my_web=3
 
 Inspect the details of the service. If you leave off the "pretty" switch, you'll get a response in JSON:
@@ -202,7 +192,6 @@ Then, delete the service:
 ## Notes
 
 In order to save credits in your Azure subscription or reduce costs, it's recommended that you STOP or DELETE the VMs after the completion of the lab.  If you stop the VMs and turn them back on at a future time, the external IP addresses will likely change.  You will need to use docker-machine regenerate-certs to update you SSH access.
-=======
     docker service scale my_web=3
 
 Inspect the details of the service. If you leave off the "pretty" switch, you'll get a response in JSON:
@@ -266,4 +255,3 @@ Then run:
  And in a few minutes, you should see your swarm appear in your OMS workspace.
 
 
->>>>>>> 5920e8dbfbf2c677e1d86ec10f7a4c73f67dfad8
