@@ -5,9 +5,9 @@ In this section, we are going to set up a container to integrate our Docker envi
 1. Add Docker management solution
     1. Open the Azure portal in your browser
     2. In the New blade under Marketplace, select Monitoring + management.
-    3. In the Monitoring + management blade, click See all and search for Docker<br>
+    3. In the Monitoring + management blade, click See all and search for **Container**<br>
     ![portal](portaloms.png)
-    4. Click on **Containers** then click *Create*
+    4. Click on **Container Monitoring Solution** then click *Create*
     5. Click on _Select a workspace_ and then click **Create new workspace**
     6. Provide the details for the new workspace, check “Pin to dashboard” and click OK
     7. After the validation click **Create**
@@ -17,8 +17,7 @@ In this section, we are going to set up a container to integrate our Docker envi
     1. On the Azure portal dashboard click on the Containers solution tile<br>
     ![tile](tile.PNG)
     2. Click on the OMS Portal icon at the top
-    3. Click on **Data Sources** connected tile on the home page, then open **Connected Sources**, and then click on **Linux Servers**<br>
-    ![datasources](datasources.png)<br>
+    3. Click on the settings icon at the top, then open **Connected Sources**, and then click on **Linux Servers**<br>
     ![connectedsources](connectedsources.png)<br>
     4. Make note of (_copy somewhere_) the **Workspace ID** and **Primary Key**.  Run the following:
     ```
@@ -34,9 +33,8 @@ Run the following command:
 
 ```
 sudo docker run --privileged -d -v /var/run/docker.sock:/var/run/docker.sock \
--v /var/log:/var/log  -e WSID=$WSID -e KEY=$KEY \
--p 127.0.0.1:25225:25225 -p 127.0.0.1:25224:25224/udp \
---name="omsagent" -h=`hostname` --restart=always microsoft/oms
+-e WSID=$WSID -e KEY=$KEY -h=`hostname` \
+-p 127.0.0.1:25225:25225 --name="omsagent" --restart=always microsoft/oms
 ```
 _If this command returns an error, try running `sudo /opt/microsoft/omsagent/bin/omsadmin.sh -X`.  But please only do this in the event of an error._
 
